@@ -1,0 +1,76 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This is the debhelper compatability version to use.
+export DH_COMPAT=4
+
+PYTHON2.1 = /usr/bin/python2.1
+PYTHON2.2 = /usr/bin/python2.2
+PYTHON2.3 = /usr/bin/python2.3
+MKHOWTO = /usr/lib/python2.3/doc/tools/mkhowto
+
+configure: configure-stamp
+configure-stamp:
+	dh_testdir
+	touch configure-stamp
+
+build: configure-stamp build-stamp
+build-stamp:
+	dh_testdir
+	$(PYTHON2.1) setup.py build
+	$(PYTHON2.2) setup.py build
+	$(PYTHON2.3) setup.py build
+	cd Doc && $(MKHOWTO) --ps
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp configure-stamp
+	rm -rf build debian/python*-crypto
+	rm -f Doc/*.ps
+	dh_clean
+
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs
+
+	$(PYTHON2.1) setup.py install --no-compile --root=debian/python2.1-crypto
+	$(PYTHON2.2) setup.py install --no-compile --root=debian/python2.2-crypto
+	$(PYTHON2.3) setup.py install --no-compile --root=debian/python2.3-crypto
+
+# Build architecture-independent files here.
+binary-indep: build install
+# We have nothing to do by default.
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a
+	dh_installexamples -a
+
+	sh -e debian/pathmangle.sh /usr/bin/python2.1 debian/python2.1-crypto
+	sh -e debian/pathmangle.sh /usr/bin/python2.2 debian/python2.2-crypto
+	sh -e debian/pathmangle.sh /usr/bin/python2.3 debian/python2.3-crypto
+
+	dh_installchangelogs -a
+	dh_strip -a
+	dh_compress -a
+	dh_fixperms -a
+	dh_python -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure
