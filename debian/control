@@ -2,7 +2,7 @@ Source: python-crypto
 Section: python
 Priority: optional
 Maintainer: Andreas Rottmann <rotty@debian.org>
-Build-Depends: cdbs, debhelper (>= 4.1.29), python, python2.1-dev, python2.2-dev, python2.3-dev, ed, tetex-bin, tetex-extra
+Build-Depends: cdbs, debhelper (>= 4.1.29), python, python2.1-dev, python2.2-dev, python2.3-dev, ed, tetex-bin, tetex-extra, libgmp3-dev (>= 4.1.4-9)
 Standards-Version: 3.6.1
 
 Package: python-crypto

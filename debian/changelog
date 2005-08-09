@@ -1,3 +1,12 @@
+python-crypto (2.0+dp1-2.1) unstable; urgency=low
+
+  * NMU to make package installable again
+  * Added missing build dependency on (versioned) libgmp3-dev, otherwise
+    the _fastmath module won't be compiled.
+  * Recompile against libgmp3c2 (Closes: #318055)
+
+ -- Bastian Kleineidam <calvin@debian.org>  Tue,  9 Aug 2005 10:54:41 +0200
+
 python-crypto (2.0+dp1-2) unstable; urgency=medium
 
   * Added missing build-dependency on tetex-bin and tetex-extra (closes:
