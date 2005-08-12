@@ -60,6 +60,16 @@ def find_library_file(compiler, libname, std_dirs, paths):
     result = find_file(filename, std_dirs, paths)
     return result
 
+
+def cc_remove_option (compiler, option):
+    """
+    Remove option from Unix-style compiler.
+    """
+    for optlist in (compiler.compiler, compiler.compiler_so):
+        if option in optlist:
+            optlist.remove(option)
+
+
 class PCTBuildExt (build_ext):
     def build_extensions(self):
         self.extensions += [
@@ -102,6 +112,10 @@ class PCTBuildExt (build_ext):
 
         # Detect which modules should be compiled
         self.detect_modules()
+        if self.compiler.compiler_type == 'unix':
+            if os.uname()[4] == 'm68k':
+                # work around ICE on m68k machines in gcc 4.0.1
+                cc_remove_option(self.compiler, "-O3")
         build_ext.build_extensions(self)
 
     def detect_modules (self):
@@ -114,6 +128,7 @@ class PCTBuildExt (build_ext):
                                   libraries=['gmp'],
                                   sources=["src/_fastmath.c"]))
         self.extensions += exts
+
 
 kw = {'name':"pycrypto",
       'version':"2.0",
