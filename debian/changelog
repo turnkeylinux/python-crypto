@@ -1,3 +1,10 @@
+python-crypto (2.0+dp1-2.3) unstable; urgency=low
+
+  * NMU.
+  * Add python2.4-crypto package, drop python2.1 and python2.2 packages.
+
+ -- Matthias Klose <doko@debian.org>  Mon, 29 Aug 2005 07:18:38 +0000
+
 python-crypto (2.0+dp1-2.2) unstable; urgency=low
 
   * NMU to fix build failures on some architectures
