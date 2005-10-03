@@ -1,7 +1,16 @@
+python-crypto (2.0.1+dfsg1-1) unstable; urgency=low
+
+  * Acknowlegde NMUs (closes: #318055, #318012).
+  * Packaged new upstream version (closes: #325517).
+    - 2.0.1 includes fix for AMD64, presumingly also closes: #297516.
+
+ -- Andreas Rottmann <rotty@debian.org>  Tue,  4 Oct 2005 00:10:40 +0200
+
 python-crypto (2.0+dp1-2.3) unstable; urgency=low
 
   * NMU.
-  * Add python2.4-crypto package, drop python2.1 and python2.2 packages.
+  * Add python2.4-crypto package, drop python2.1 and python2.2 packages
+    (closes: #313349).
 
  -- Matthias Klose <doko@debian.org>  Mon, 29 Aug 2005 07:18:38 +0000
 
