@@ -1,10 +1,13 @@
 #!/usr/bin/make -f
 
+DEB_PYTHON_SYSTEM=pycentral
+
 include /usr/share/cdbs/1/rules/buildcore.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
 
-MKHOWTO = /usr/lib/python2.3/doc/tools/mkhowto
+pyver := $(shell pyversions -vd)
+MKHOWTO = /usr/lib/python$(pyver)/doc/tools/mkhowto
 
 common-build-arch::
 	cd Doc && $(MKHOWTO) --ps
