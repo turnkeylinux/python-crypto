@@ -1,3 +1,11 @@
+python-crypto (2.0.1+dfsg1-1.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Add missing Provides: ${python:Provides} to debian/control, completing
+    fix for #373524 from the previous NMU.
+
+ -- Adeodato Simó <dato@net.com.org.es>  Mon, 19 Jun 2006 03:06:37 +0200
+
 python-crypto (2.0.1+dfsg1-1.1) unstable; urgency=low
 
   * Convert to the updated Python policy using python-central.

@@ -11,6 +11,7 @@ Architecture: any
 Depends: ${python:Depends}
 Conflicts: python2.3-crypto, python2.4-crypto
 Replaces: python2.3-crypto, python2.4-crypto
+Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
 Description: cryptographic algorithms and protocols for Python
  A collection of cryptographic algorithms and protocols, implemented
