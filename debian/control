@@ -2,7 +2,7 @@ Source: python-crypto
 Section: python
 Priority: optional
 Maintainer: Andreas Rottmann <rotty@debian.org>
-Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5.0.37.1), python-central (>= 0.4.17), python-all-dev (>= 2.3.5-9), python-all-dbg, ed, tetex-bin, tetex-extra, libgmp3-dev (>= 4.1.4-10)
+Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5.0.37.1), python-central (>= 0.4.17), python-all-dev (>= 2.3.5-9), python-all-dbg, ed, texlive-latex-recommended, libgmp3-dev (>= 4.1.4-10)
 XS-Python-Version: all
 Standards-Version: 3.7.2
 
