@@ -1,3 +1,11 @@
+python-crypto (2.0.1+dfsg1-1.2+etch0) oldstable-security; urgency=high
+
+  * Apply fix for CVE-2009-0544 (Buffer overflow in the ARC2 module), and
+    a stand-alone version of the associated testcase (see
+    http://www.openwall.com/lists/oss-security/2009/02/07/1).
+
+ -- Andreas Rottmann <rotty@debian.org>  Mon, 23 Feb 2009 20:12:05 +0100
+
 python-crypto (2.0.1+dfsg1-1.2) unstable; urgency=low
 
   * Non-maintainer upload.
