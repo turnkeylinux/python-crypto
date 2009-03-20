@@ -11,7 +11,6 @@
  */
 
 #include <string.h>  
-#include "Python.h"
 
 #define MODULE_NAME ARC2
 #define BLOCK_SIZE 8
@@ -146,12 +145,6 @@ block_init(block_state *self, U8 *key, int keylength)
 	/* The "bits" value may be some sort of export control weakening.
 	   We'll hardwire it to 1024. */
 #define bits 1024
-
-	if ((U32)keylength > sizeof(self->xkey)) {
-		PyErr_SetString(PyExc_ValueError,
-				"ARC2 key length must be less than 128 bytes");
-		return;
-	}
 
 	memcpy(self->xkey, key, keylength);
   

@@ -1,0 +1,43 @@
+--- python-crypto-2.0.1+dfsg1.orig/test/test_arc2_buffer_overflow.py
++++ python-crypto-2.0.1+dfsg1/test/test_arc2_buffer_overflow.py
+@@ -0,0 +1,17 @@
++import unittest
++
++class BufferOverflowTest(unittest.TestCase):
++    # Test a buffer overflow found in older versions of PyCrypto
++
++    def setUp(self):
++        global ARC2
++        from Crypto.Cipher import ARC2
++
++    def runTest(self):
++        """ARC2 with keylength > 128"""
++        key = "x" * 16384
++        mode = ARC2.MODE_ECB
++        self.assertRaises(ValueError, ARC2.new, key, mode)
++
++if __name__ == '__main__':
++    unittest.main()
+--- python-crypto-2.0.1+dfsg1.orig/src/ARC2.c
++++ python-crypto-2.0.1+dfsg1/src/ARC2.c
+@@ -11,6 +11,7 @@
+  */
+ 
+ #include <string.h>  
++#include "Python.h"
+ 
+ #define MODULE_NAME ARC2
+ #define BLOCK_SIZE 8
+@@ -146,6 +147,12 @@
+ 	   We'll hardwire it to 1024. */
+ #define bits 1024
+ 
++	if ((U32)keylength > sizeof(self->xkey)) {
++		PyErr_SetString(PyExc_ValueError,
++				"ARC2 key length must be less than 128 bytes");
++		return;
++	}
++
+ 	memcpy(self->xkey, key, keylength);
+   
+ 	/* Phase 1: Expand input key to 128 bytes */

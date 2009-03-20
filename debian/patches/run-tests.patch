@@ -1,0 +1,12 @@
+diff -u python-crypto-2.0.1+dfsg1/debian/rules python-crypto-2.0.1+dfsg1/debian/rules
++++ python-crypto-2.0.1+dfsg1/test.py
+@@ -35,4 +35,8 @@
+ if args: test.TestBlockModules(args, verbose= not quiet)
+ else: test.TestBlockModules(verbose= not quiet)
+ 
+-
++import subprocess
++os.chdir('test')
++os.environ['PYTHONPATH'] = sys.path[0] + ':' + sys.path[1]
++for unit in ['test_arc2_buffer_overflow.py']:
++    if subprocess.call(['python',unit,'-v']) != 0: sys.exit(1)

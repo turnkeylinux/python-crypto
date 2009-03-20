@@ -1,0 +1,7 @@
+errata-2.0.1.patch
+dfsg-adjust.patch
+aes256-55bytes.patch
+#m68k-no-O3.patch
+arc2-buffer-overflow.patch
+run-tests.patch
+no-usr-local.patch

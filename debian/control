@@ -2,13 +2,14 @@ Source: python-crypto
 Section: python
 Priority: optional
 Maintainer: Andreas Rottmann <rotty@debian.org>
-Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5.0.37.1), python-central (>= 0.4.17), python-all-dev (>= 2.3.5-9), python-all-dbg, ed, texlive-latex-recommended, texlive-fonts-recommended, libgmp3-dev (>= 4.1.4-10)
+Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5.0.37.1), quilt, python-central (>= 0.4.17), python-all-dev (>= 2.3.5-9), python-all-dbg, ed, texlive-latex-recommended, texlive-fonts-recommended, libgmp3-dev (>= 4.1.4-10)
 XS-Python-Version: all
-Standards-Version: 3.7.2
+Standards-Version: 3.8.1
+Homepage: http://www.amk.ca/python/code/crypto.html
 
 Package: python-crypto
 Architecture: any
-Depends: ${python:Depends}
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Conflicts: python2.3-crypto, python2.4-crypto
 Replaces: python2.3-crypto, python2.4-crypto
 Provides: ${python:Provides}
@@ -27,11 +28,13 @@ Description: cryptographic algorithms and protocols for Python
     into a set of English words, primality testing.
 
 Package: python-crypto-dbg
+Section: debug
 Priority: extra
 Architecture: any
-Depends: python-crypto (= ${Source-Version}), python-dbg, ${shlibs:Depends}
+Depends: python-crypto (= ${binary:Version}), python-dbg, ${shlibs:Depends}, ${misc:Depends}
+XB-Python-Version: ${python:Versions}
 Description: cryptographic algorithms and protocols for Python (debug extension)
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python.
  .
- This package contains the extensions built for the python debug interpreter.
+ This package contains the extensions built for the Python debug interpreter.

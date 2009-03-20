@@ -1,0 +1,3 @@
+version=3
+opts=dversionmangle=s/\+dfsg\d+$// \
+  http://www.amk.ca/files/python/crypto/pycrypto-(.*)\.tar\.gz

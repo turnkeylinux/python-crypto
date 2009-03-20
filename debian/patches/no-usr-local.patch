@@ -1,0 +1,9 @@
+Index: python-crypto-2.0.1+dfsg1/Util/RFC1751.py
+===================================================================
+--- python-crypto-2.0.1+dfsg1.orig/Util/RFC1751.py	2009-03-20 19:42:03.000000000 +0100
++++ python-crypto-2.0.1+dfsg1/Util/RFC1751.py	2009-03-20 19:42:23.000000000 +0100
+@@ -1,4 +1,3 @@
+-#!/usr/local/bin/python
+ # rfc1751.py : Converts between 128-bit strings and a human-readable
+ # sequence of words, as defined in RFC1751: "A Convention for
+ # Human-Readable 128-bit Keys", by Daniel L. McDonald.

@@ -1,12 +1,12 @@
 Metadata-Version: 1.0
 Name: pycrypto
-Version: 2.0.1
+Version: 2.0
 Summary: Cryptographic modules for Python.
-Home-page: http://www.amk.ca/python/code/crypto
+Home-page: http://pycrypto.sourceforge.net
 Author: A.M. Kuchling
 Author-email: amk@amk.ca
 License: UNKNOWN
-Download-URL: http://www.amk.ca/files/python/crypto/pycrypto-2.0.1.tar.gz
+Download-URL: http://www.amk.ca/files/python/crypto/pycrypto-2.0.tar.gz
 Description: UNKNOWN
 Platform: UNKNOWN
 Classifier: Development Status :: 4 - Beta
