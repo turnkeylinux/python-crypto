@@ -1,3 +1,10 @@
+python-crypto (2.0.1+dfsg1-5) unstable; urgency=low
+
+  * Added python-old-doctools to Build-Depends (closes: #568047).
+  * Bumped Standards-Version to 3.8.4 (no changes).
+  
+ -- Andreas Rottmann <rotty@debian.org>  Thu, 11 Feb 2010 00:45:34 +0100
+
 python-crypto (2.0.1+dfsg1-4) unstable; urgency=low
 
   * Switched to quilt patches:

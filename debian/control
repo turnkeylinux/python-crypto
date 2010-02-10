@@ -2,9 +2,9 @@ Source: python-crypto
 Section: python
 Priority: optional
 Maintainer: Andreas Rottmann <rotty@debian.org>
-Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5.0.37.1), quilt, python-central (>= 0.4.17), python-all-dev (>= 2.3.5-9), python-all-dbg, ed, texlive-latex-recommended, texlive-fonts-recommended, libgmp3-dev (>= 4.1.4-10)
+Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5.0.37.1), quilt, python-central (>= 0.4.17), python-all-dev (>= 2.3.5-9), python-all-dbg, python-old-doctools, ed, texlive-latex-recommended, texlive-fonts-recommended, libgmp3-dev (>= 4.1.4-10)
 XS-Python-Version: all
-Standards-Version: 3.8.1
+Standards-Version: 3.8.4
 Homepage: http://www.amk.ca/python/code/crypto.html
 
 Package: python-crypto
