@@ -1,3 +1,22 @@
+python-crypto (2.1.0-1) unstable; urgency=low
+
+  * New upstream version. (closes: #561306).
+    - 2.1.0 includes fix for 160-bit DSS key issue (closes: #433563).
+    - The following patches have been obsoleted (fixed by upstream):
+      errata-2.0.1.patch
+      dfsg-adjust.patch
+      aes256-55bytes.patch
+      arc2-buffer-overflow.patch
+      run-tests.patch
+    - The following patches have been updated:
+      no-usr-local.patch:
+        Remove #!/usr/local/bin/python shebang line.
+  * New patches:
+    - doc.patch:
+        Build doc with local source directory.
+
+ -- James Cook <zealcook@gmail.com>  Sun, 28 Feb 2010 10:17:19 +0800
+
 python-crypto (2.0.1+dfsg1-5) unstable; urgency=low
 
   * Added python-old-doctools to Build-Depends (closes: #568047).

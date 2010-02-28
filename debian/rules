@@ -8,14 +8,16 @@ include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 include /usr/share/cdbs/1/class/python-distutils.mk
 
 pyver := $(shell pyversions -vd)
-MKHOWTO = /usr/lib/python$(pyver)/doc/tools/mkhowto
 
 common-build-arch::
-	cd Doc && $(MKHOWTO) --ps
+	epydoc --config Doc/epydoc-config
 
 build/python-crypto::
+	# If want to open test after building, 
+	# use `python$$i ./setup.py test; \' line instead.
+	# This will take a long time.
 	for i in $(cdbs_python_build_versions); do \
-	  python$$i ./test.py; \
+	  python$$i ./setup.py build; \
 	done
 
 $(patsubst %,binary-post-install/%,$(DEB_PYTHON_REAL_LIB_PACKAGES)):: 
@@ -41,4 +43,4 @@ binary-predeb/python-crypto-dbg::
 
 clean::
 	rm -rf build
-	rm -f Doc/*.ps
+	rm -rf Doc/apidoc
