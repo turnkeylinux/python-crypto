@@ -8,5 +8,5 @@ Abstract:
 Section: Programming/Python
 
 Format: HTML
-Index: /usr/share/doc/python-crypto/toc.html
-Files: /usr/share/doc/python-crypto/*.html
+Index: /usr/share/doc/python-crypto-doc/toc.html
+Files: /usr/share/doc/python-crypto-doc/*.html

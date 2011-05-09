@@ -1,4 +1,6 @@
-Subject: Remove #!/usr/local/bin/python shebang line.
+Description: Remove #!/usr/local/bin/python shebang line.
+Author: James Cook <zealcook@gmail.com>
+Last-Update: 2011-03-18
 
 Index: pycrypto-2.1.0/lib/Crypto/Util/RFC1751.py
 ===================================================================

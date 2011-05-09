@@ -1,46 +1,45 @@
 #!/usr/bin/make -f
 
-DEB_PYTHON_SYSTEM=pycentral
+# Get the supported Python versions
+PYVERS = $(shell pyversions -r -v)
+# Get the default Python version
+PYVERSION = $(shell pyversions -d -v)
 
-include /usr/share/cdbs/1/rules/buildcore.mk
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
-include /usr/share/cdbs/1/class/python-distutils.mk
+# Callable functions to determine the correct PYTHONPATH
+pythonpath = $$(ls -d $(CURDIR)/build/lib.*-$(1))
+pythonpath_dbg = $$(ls -d $(CURDIR)/build/lib_d.*-$(1) 2>/dev/null || ls -d $(CURDIR)/build/lib.*$(1)-pydebug)
 
-pyver := $(shell pyversions -vd)
+%:
+	dh $@ --with=python2
 
-common-build-arch::
-	epydoc --config Doc/epydoc-config
+override_dh_clean:
+	# Keep LEGAL/copy/LICENSE.orig
+	dh_clean -XLEGAL/copy/LICENSE.orig
 
-build/python-crypto::
-	# If want to open test after building, 
-	# use `python$$i ./setup.py test; \' line instead.
-	# This will take a long time.
-	for i in $(cdbs_python_build_versions); do \
-	  python$$i ./setup.py build; \
-	done
+override_dh_installdocs:
+	# Build documentation
+	PYTHONPATH=$(call pythonpath,${PYVERSION}) epydoc --config Doc/epydoc-config
+	dh_installdocs
 
-$(patsubst %,binary-post-install/%,$(DEB_PYTHON_REAL_LIB_PACKAGES)):: 
-	sh -e debian/pathmangle.sh /usr/bin/$(shell echo $(cdbs_curpkg) | sed 's,-crypto$$,,') debian/$(cdbs_curpkg)
+override_dh_install:
+	# Install everything excluding the *_d.so debug extensions to python-foo
+	dh_install -X"*_d.so" "debian/tmp/*" -p python-crypto
+	# Install the debug extensions to python-foo-dbg
+	find debian/tmp -name "*_d.so" -exec dh_install '{}' -p python-crypto-dbg \;
+	# Continue with regular dh_install
+	dh_install
 
-build/python-crypto-dbg::
-	set -e; \
-	for i in $(cdbs_python_build_versions); do \
-	  python$$i-dbg ./setup.py build; \
-	done
+override_dh_auto_test:
+ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
+		set -e -x; \
+		for py in $(PYVERS); do \
+			PYTHONPATH=$(call pythonpath,$$py) python$$py setup.py test ;\
+			PYTHONPATH=$(call pythonpath_dbg,$$py) python$$py-dbg setup.py test ;\
+		done
+endif
 
-install/python-crypto-dbg::
-	for i in $(cdbs_python_build_versions); do \
-	  python$$i-dbg ./setup.py install --root $(CURDIR)/debian/python-crypto-dbg; \
-	done
-	find debian/python-crypto-dbg \
-		! -type d ! -name '*_d.so' | xargs rm -f
-	find debian/python-crypto-dbg -depth -empty -exec rmdir {} \;
-
-binary-predeb/python-crypto-dbg::
-	rm -rf debian/python-crypto-dbg/usr/share/doc/python-crypto-dbg
-	ln -s python-crypto debian/python-crypto-dbg/usr/share/doc/python-crypto-dbg
-
-clean::
-	rm -rf build
-	rm -rf Doc/apidoc
+override_dh_strip:
+# ifeq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
+	dh_strip --dbg-package=python-crypto-dbg
+#	cd debian/*-dbg/usr/lib/debug/usr/lib && mv pyshared pymodules
+# endif

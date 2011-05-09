@@ -1,18 +1,31 @@
-python-crypto (2.1.0-2+squeeze2) squeeze-security; urgency=high
+python-crypto (2.3-1) unstable; urgency=low
 
-  * Non-maintainer upload.
-  * debian/patches/CVE-2013-1445.patch: Apply upstream patch to fix
-    CVE-2013-1445: PRNG not correctly reseeded in some situations.
+  * New maintainer (Closes: #532121).
+  * New upstream release (Closes: #625238).
+  * Switch format to 3.0 (quilt).
+  * Use dh instead of cdbs:
+    - Switch to dh_python2 (Closes: #617001).
+    - Drop Build-Depends on quilt, cdbs, ed, python-central.
+    - Raise required debhelper version to 8.1.0.
+    - Drop XB-Python-Version and depend on python:Depends.
+    - Replace XS-Python-Version by X-Python-Version.
+    - Drop Depends on python-dbg in python-crypto-dbg as dh_python2 will add
+      these dependencies anyway.
+    - Remove unused files patch-mangle.sh and pycompat.
+  * Build-Depend on libgmp-dev.
+  * Build-Depend on python-docutils since the documentation uses reST.
+  * Ship documentation in extra package to satisfy lintian
+    (arch-dep-package-has-big-usr-share).
+  * Bump Standards-Version to 3.9.2.
+  * Convert patches to DEP3.
+  * Remove unused patch m68k-no-O3.patch and doc.patch.
+  * Add patch epydoc-exclude-introspect.patch to update the exclude-introspect
+    field in epydoc to the new module locations.
+  * Convert changelog to DEP5.
+  * Run upstream's test suite.
+  * Add DPMT to Uploaders.
 
- -- Sebastian Ramacher <sramacher@debian.org>  Tue, 15 Oct 2013 18:45:52 +0200
-
-python-crypto (2.1.0-2+squeeze1) stable-security; urgency=high
-
-  * Non-maintainer upload.
-  * debian/patches/elgamal-keygen.patch: Backport patch from upstream to fix
-    CVE-2012-2417.
-
- -- Sebastian Ramacher <s.ramacher@gmx.at>  Fri, 25 May 2012 14:59:55 +0200
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Mon, 09 May 2011 21:18:17 +0200
 
 python-crypto (2.1.0-2) unstable; urgency=low
 

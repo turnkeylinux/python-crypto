@@ -1,11 +1,13 @@
 Source: python-crypto
 Section: python
 Priority: optional
-Maintainer: James Cook <zealcook@gmail.com>
-Uploaders: Andreas Rottmann <rotty@debian.org>
-Build-Depends: cdbs (>= 0.4.41), debhelper (>= 5.0.37.1), quilt, python-central (>= 0.4.17), python-all-dev (>= 2.3.5-9), python-all-dbg, ed, libgmp3-dev (>= 4.1.4-10), python-epydoc
-XS-Python-Version: all
-Standards-Version: 3.8.4
+Maintainer: Sebastian Ramacher <s.ramacher@gmx.at>
+Uploaders: Andreas Rottmann <rotty@debian.org>,
+ Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Build-Depends: debhelper (>= 8.1.0~), python-all-dev (>= 2.6.6-3~),
+ python-all-dbg, libgmp-dev, python-epydoc, python-docutils
+X-Python-Version: >= 2.1
+Standards-Version: 3.9.2
 Homepage: http://www.pycrypto.org/
 
 Package: python-crypto
@@ -14,8 +16,7 @@ Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Conflicts: python2.3-crypto, python2.4-crypto
 Replaces: python2.3-crypto, python2.4-crypto
 Provides: ${python:Provides}
-Suggests: python-crypto-dbg
-XB-Python-Version: ${python:Versions}
+Suggests: python-crypto-dbg, python-crypto-doc
 Description: cryptographic algorithms and protocols for Python
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python. Among the contents of the package:
@@ -32,10 +33,23 @@ Package: python-crypto-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: python-crypto (= ${binary:Version}), python-dbg, ${shlibs:Depends}, ${misc:Depends}
-XB-Python-Version: ${python:Versions}
+Depends: python-crypto (= ${binary:Version}), ${shlibs:Depends},
+ ${misc:Depends}, ${python:Depends}
+Provides: ${python:Provides}
 Description: cryptographic algorithms and protocols for Python (debug extension)
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python.
  .
  This package contains the extensions built for the Python debug interpreter.
+
+Package: python-crypto-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}
+Breaks: python-crypto (<< 2.3)
+Replaces: python-crypto (<< 2.3)
+Description: cryptographic algorithms and protocols for Python (documentation)
+ A collection of cryptographic algorithms and protocols, implemented
+ for use from Python.
+ .
+ This package contains technical documentation.
