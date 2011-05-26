@@ -1,3 +1,11 @@
+python-crypto (2.3-2) unstable; urgency=low
+
+  * Add Vcs-* entries.
+  * Add patch fix-RSA-generate-exception.patch to fix exception message in
+    Crypto.PublicKey.RSA.generate (Closes: #627959).
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Thu, 26 May 2011 18:50:11 +0200
+
 python-crypto (2.3-1) unstable; urgency=low
 
   * New maintainer (Closes: #532121).
