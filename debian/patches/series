@@ -1,3 +1,4 @@
 no-usr-local.patch
 epydoc-exclude-introspect.patch
 fix-RSA-generate-exception.patch
+setup-dont-check-gmp.patch

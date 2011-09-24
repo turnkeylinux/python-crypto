@@ -1,3 +1,10 @@
+python-crypto (2.3-3) unstable; urgency=low
+
+  * Add patch setup-dont-check-gmp.patch to build _fastmath.so even with
+    multiarch-ified versions of libgmp.
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Sat, 24 Sep 2011 16:19:11 +0200
+
 python-crypto (2.3-2) unstable; urgency=low
 
   * Add Vcs-* entries.
