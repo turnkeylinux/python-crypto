@@ -1,1 +1,4 @@
 Doc/apidoc/*
+src/config.h
+config.log
+config.status

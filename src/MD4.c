@@ -28,10 +28,12 @@
   
 
 #include <string.h>
-#include <Python.h>
+#include "Python.h"
+#include "pycrypto_compat.h"
 
 #define MODULE_NAME MD4
 #define DIGEST_SIZE 16
+#define BLOCK_SIZE 64
 
 typedef unsigned int U32;
 typedef unsigned char U8;
@@ -213,7 +215,7 @@ hash_digest (const hash_state *self)
 	digest[14]=(temp.D >> 16) & 255;
 	digest[15]=(temp.D >> 24) & 255;
   
-	return PyString_FromStringAndSize((char *) digest, 16);
+	return PyBytes_FromStringAndSize((char *) digest, 16);
 }
 
 #include "hash_template.c"

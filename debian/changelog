@@ -1,3 +1,23 @@
+python-crypto (2.4-1) unstable; urgency=low
+
+  [ Sebastian Ramacher ]
+  * New upstream release.
+  * debian/rules: export CFLAGS and LDFLAGS to build with hardening flags.
+  * debian/patches:
+    - Add dont-drop-g.patch to compile non debug builds with -g.
+    - Remove epydoc-exclude-introspect.patch, fix-RSA-generate-exception.patch
+      and no-usr-local.patch: all applied upstream.
+    - Remove setup-dont-check-gmp.patch: not needed anymore.
+  * Add python3-crypto and python3-crypto-dbg packages.
+    - debian/rules: build, install and test for all available versions of
+      Python 2 and Python 3.
+    - debian/control: add Build-Dep on python3-all-dev and python3-all-dbg.
+
+  [ Jan Dittberner ]
+  * add debian/control: DM-Upload-Allowed: yes
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Mon, 24 Oct 2011 21:10:19 +0200
+
 python-crypto (2.3-3) unstable; urgency=low
 
   * Add patch setup-dont-check-gmp.patch to build _fastmath.so even with

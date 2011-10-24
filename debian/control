@@ -5,12 +5,15 @@ Maintainer: Sebastian Ramacher <s.ramacher@gmx.at>
 Uploaders: Andreas Rottmann <rotty@debian.org>,
  Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Build-Depends: debhelper (>= 8.1.0~), python-all-dev (>= 2.6.6-3~),
- python-all-dbg, libgmp-dev, python-epydoc, python-docutils
+ python-all-dbg, libgmp-dev, python-epydoc, python-docutils,
+ python3-all-dev, python3-all-dbg
 X-Python-Version: >= 2.1
+X-Python3-Version: >= 3.0
 Standards-Version: 3.9.2
 Vcs-Svn: svn://svn.debian.org/svn/python-modules/packages/python-crypto/trunk/
 Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/python-crypto/trunk/
 Homepage: http://www.pycrypto.org/
+DM-Upload-Allowed: yes
 
 Package: python-crypto
 Architecture: any
@@ -28,7 +31,7 @@ Description: cryptographic algorithms and protocols for Python
   * Stream encryption algorithms: ARC4, simple XOR.
   * Public-key algorithms: RSA, DSA, ElGamal, qNEW.
   * Protocols: All-or-nothing transforms, chaffing/winnowing.
-  * Miscellaneous: RFC1751 module for converting 128-key keys 
+  * Miscellaneous: RFC1751 module for converting 128-key keys
     into a set of English words, primality testing, random number gereration.
 
 Package: python-crypto-dbg
@@ -43,6 +46,36 @@ Description: cryptographic algorithms and protocols for Python (debug extension)
  for use from Python.
  .
  This package contains the extensions built for the Python debug interpreter.
+
+Package: python3-crypto
+Architecture: any
+Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python3:Provides}
+Suggests: python3-crypto-dbg, python-crypto-doc
+Description: cryptographic algorithms and protocols for Python 3
+ A collection of cryptographic algorithms and protocols, implemented
+ for use from Python 3. Among the contents of the package:
+ .
+  * Hash functions: HMAC, MD2, MD4, MD5, RIPEMD160, SHA, SHA256.
+  * Block encryption algorithms: AES, ARC2, Blowfish, CAST, DES, Triple-DES.
+  * Stream encryption algorithms: ARC4, simple XOR.
+  * Public-key algorithms: RSA, DSA, ElGamal, qNEW.
+  * Protocols: All-or-nothing transforms, chaffing/winnowing.
+  * Miscellaneous: RFC1751 module for converting 128-key keys
+    into a set of English words, primality testing, random number gereration.
+
+Package: python3-crypto-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: python3-crypto (= ${binary:Version}), ${shlibs:Depends},
+ ${misc:Depends}, ${python3:Depends}
+Provides: ${python3:Provides}
+Description: cryptographic algorithms and protocols for Python 3 (debug extension)
+ A collection of cryptographic algorithms and protocols, implemented
+ for use from Python 3.
+ .
+ This package contains the extensions built for the Python 3 debug interpreter.
 
 Package: python-crypto-doc
 Section: doc

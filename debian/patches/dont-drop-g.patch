@@ -1,0 +1,19 @@
+Description: don't drop -g from the call to gcc
+ The binaries will be stripped later anyway.
+Origin: Sebastian Ramacher <s.ramacher@gmx.at>
+Last-Update: 2011-10-12
+Forwarded: no
+
+diff --git a/setup.py b/setup.py
+index 09fbc09..d0c6201 100644
+--- a/setup.py
++++ b/setup.py
+@@ -177,8 +177,6 @@ class PCTBuildExt (build_ext):
+                 # especially helps the DES modules.
+                 self.__add_compiler_option("-O3")
+                 self.__add_compiler_option("-fomit-frame-pointer")
+-                # Don't include debug symbols unless debugging
+-                self.__remove_compiler_option("-g")
+                 # Don't include profiling information (incompatible with
+                 # -fomit-frame-pointer)
+                 self.__remove_compiler_option("-pg")
