@@ -1,3 +1,18 @@
+python-crypto (2.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules: also export CPPFLAGS to honor all hardening flags.
+  * Support noopt.
+    - debian/patches:
+      + dont-drop-g.patch: update to don't drop optimization flags and to
+        don't append -O3.
+      + Add fix-unresolved-reference-size.patch to fix an unresolved reference
+        in _fastmath when built without optimization.
+    - debian/rules: if noopt is not set, append -O3 to CFLAGS (as upstream
+      does).
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Wed, 16 Nov 2011 18:09:13 +0100
+
 python-crypto (2.4-1) unstable; urgency=low
 
   [ Sebastian Ramacher ]

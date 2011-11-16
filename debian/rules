@@ -11,7 +11,13 @@ PY3VERS = $(shell py3versions -vr)
 pythonpath = $$(ls -d $(CURDIR)/build/lib.*-$(1))
 pythonpath_dbg = $$(ls -d $(CURDIR)/build/lib_d.*-$(1) 2>/dev/null || ls -d $(CURDIR)/build/lib.*$(1)-pydebug)
 
+# build with -O3 (as upstream does) if noopt is not set
+ifeq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+export DEB_CFLAGS_MAINT_APPEND=-O3
+endif
+
 export CFLAGS = $(shell dpkg-buildflags --get CFLAGS)
+export CPPFLAGS = $(shell dpkg-buildflags --get CPPFLAGS)
 export LDFLAGS = $(shell dpkg-buildflags --get LDFLAGS)
 
 %:
