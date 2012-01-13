@@ -1,3 +1,11 @@
+python-crypto (2.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches: add fix-epydog-ignore.patch to fix some warnings from
+    epydoc.
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Fri, 13 Jan 2012 21:46:38 +0100
+
 python-crypto (2.4.1-1) unstable; urgency=low
 
   * New upstream release.
