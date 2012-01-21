@@ -1,3 +1,10 @@
+python-crypto (2.5-2) unstable; urgency=low
+
+  * debian/patches: add posixread.patch to fix incorrect assumption on data
+    returned from read. (Closes: #654160)
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Sat, 21 Jan 2012 13:09:09 +0100
+
 python-crypto (2.5-1) unstable; urgency=low
 
   * New upstream release.
