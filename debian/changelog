@@ -1,3 +1,18 @@
+python-crypto (2.6-1) unstable; urgency=high
+
+  * New upstream release.
+    - Fixes CVE-2012-2417: insecure ElGamal key generation.
+  * Set urgency to high since this fixes a security issue.
+  * debian/copyright:
+    - Fix formatting.
+    - Update Format URL.
+  * debian/control:
+    - Bump Standards-Version to 3.9.3 (no changes required).
+    - Drop qNEW from Description since qNEW has been removed.
+  * debian/patches: Remove posixread.patch (not needed anymore).
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Thu, 24 May 2012 20:16:34 +0200
+
 python-crypto (2.5-2) unstable; urgency=low
 
   * debian/patches: add posixread.patch to fix incorrect assumption on data

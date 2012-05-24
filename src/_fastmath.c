@@ -66,19 +66,26 @@ static void
 longObjToMPZ (mpz_t m, PyLongObject * p)
 {
 	int size, i;
+	long negative;
 	mpz_t temp, temp2;
 	mpz_init (temp);
 	mpz_init (temp2);
 #ifdef IS_PY3K
-	if (p->ob_base.ob_size > 0)
+	if (p->ob_base.ob_size > 0) {
 		size = p->ob_base.ob_size;
-	else
+		negative = 1;
+	} else {
 		size = -p->ob_base.ob_size;
+		negative = -1;
+	}
 #else
-	if (p->ob_size > 0)
+	if (p->ob_size > 0) {
 		size = p->ob_size;
-	else
+		negative = 1;
+	} else {
 		size = -p->ob_size;
+		negative = -1;
+	}
 #endif
 	mpz_set_ui (m, 0);
 	for (i = 0; i < size; i++)
@@ -91,6 +98,7 @@ longObjToMPZ (mpz_t m, PyLongObject * p)
 #endif
 		mpz_add (m, m, temp2);
 	}
+	mpz_mul_si(m, m, negative);
 	mpz_clear (temp);
 	mpz_clear (temp2);
 }
@@ -104,12 +112,15 @@ mpzToLongObj (mpz_t m)
 #else
 	int size = (mpz_sizeinbase (m, 2) + SHIFT - 1) / SHIFT;
 #endif
+	int sgn;
 	int i;
 	mpz_t temp;
 	PyLongObject *l = _PyLong_New (size);
 	if (!l)
 		return NULL;
-	mpz_init_set (temp, m);
+	sgn = mpz_sgn(m);
+	mpz_init(temp);
+	mpz_mul_si(temp, m, sgn);
 	for (i = 0; i < size; i++)
 	{
 #ifdef IS_PY3K
@@ -124,9 +135,9 @@ mpzToLongObj (mpz_t m)
 	while ((i > 0) && (l->ob_digit[i - 1] == 0))
 		i--;
 #ifdef IS_PY3K
-	l->ob_base.ob_size = i;
+	l->ob_base.ob_size = i * sgn;
 #else
-	l->ob_size = i;
+	l->ob_size = i * sgn;
 #endif
 	mpz_clear (temp);
 	return (PyObject *) l;
@@ -466,6 +477,8 @@ dsaKey_new (PyObject * self, PyObject * args)
 		return NULL;
 
 	key = PyObject_New (dsaKey, &dsaKeyType);
+	if (key == NULL)
+		return NULL;
 	mpz_init (key->y);
 	mpz_init (key->g);
 	mpz_init (key->p);
@@ -552,7 +565,7 @@ dsaKey_getattr (dsaKey * key, char *attr)
 static PyObject *
 dsaKey__sign (dsaKey * key, PyObject * args)
 {
-	PyObject *lm, *lk, *lr, *ls;
+	PyObject *lm, *lk, *lr, *ls, *retval;
 	mpz_t m, k, r, s;
 	int result;
 	if (!PyArg_ParseTuple (args, "O!O!", &PyLong_Type, &lm,
@@ -574,11 +587,19 @@ dsaKey__sign (dsaKey * key, PyObject * args)
 	}
 	lr = mpzToLongObj (r);
 	ls = mpzToLongObj (s);
+	if (lr == NULL || ls == NULL) goto errout;
 	mpz_clear (m);
 	mpz_clear (k);
 	mpz_clear (r);
 	mpz_clear (s);
-	return Py_BuildValue ("(NN)", lr, ls);
+	retval = Py_BuildValue ("(NN)", lr, ls);
+	if (retval == NULL) goto errout;
+	return retval;
+
+errout:
+	Py_XDECREF(lr);
+	Py_XDECREF(ls);
+	return NULL;
 }
 
 static PyObject *
@@ -703,6 +724,8 @@ rsaKey_new (PyObject * self, PyObject * args)
 		return NULL;
 
 	key = PyObject_New (rsaKey, &rsaKeyType);
+	if (key == NULL)
+		return NULL;
 	mpz_init (key->n);
 	mpz_init (key->e);
 	mpz_init (key->d);
@@ -838,7 +861,7 @@ rsaKey_getattr (rsaKey * key, char *attr)
 static PyObject *
 rsaKey__encrypt (rsaKey * key, PyObject * args)
 {
-	PyObject *l, *r;
+	PyObject *l, *r, *retval;
 	mpz_t v;
 	int result;
 	if (!PyArg_ParseTuple (args, "O!", &PyLong_Type, &l))
@@ -854,14 +877,20 @@ rsaKey__encrypt (rsaKey * key, PyObject * args)
 		return NULL;
 	}
 	r = (PyObject *) mpzToLongObj (v);
+	if (r == NULL) return NULL;
 	mpz_clear (v);
-	return Py_BuildValue ("N", r);
+	retval = Py_BuildValue ("N", r);
+	if (retval == NULL) {
+		Py_DECREF(r);
+		return NULL;
+	}
+	return retval;
 }
 
 static PyObject *
 rsaKey__decrypt (rsaKey * key, PyObject * args)
 {
-	PyObject *l, *r;
+	PyObject *l, *r, *retval;
 	mpz_t v;
 	int result;
 	if (!PyArg_ParseTuple (args, "O!", &PyLong_Type, &l))
@@ -884,8 +913,14 @@ rsaKey__decrypt (rsaKey * key, PyObject * args)
 		return NULL;
 	}
 	r = mpzToLongObj (v);
+	if (r == NULL) return NULL;
 	mpz_clear (v);
-	return Py_BuildValue ("N", r);
+	retval = Py_BuildValue ("N", r);
+	if (retval == NULL) {
+		Py_DECREF(r);
+		return NULL;
+	}
+	return retval;
 }
 
 static PyObject *
@@ -916,7 +951,7 @@ rsaKey__verify (rsaKey * key, PyObject * args)
 static PyObject *
 rsaKey__blind (rsaKey * key, PyObject * args)
 {
-	PyObject *l, *lblind, *r;
+	PyObject *l, *lblind, *r, *retval;
 	mpz_t v, vblind;
 	int result;
 	if (!PyArg_ParseTuple (args, "O!O!", &PyLong_Type, &l, 
@@ -940,15 +975,22 @@ rsaKey__blind (rsaKey * key, PyObject * args)
 			return NULL;
 		}
 	r = (PyObject *) mpzToLongObj (v);
+	if (r == NULL)
+		return NULL;
 	mpz_clear (v);
 	mpz_clear (vblind);
-	return Py_BuildValue ("N", r);
+	retval = Py_BuildValue ("N", r);
+	if (retval == NULL) {
+		Py_DECREF(r);
+		return NULL;
+	}
+	return retval;
 }
 
 static PyObject *
 rsaKey__unblind (rsaKey * key, PyObject * args)
 {
-	PyObject *l, *lblind, *r;
+	PyObject *l, *lblind, *r, *retval;
 	mpz_t v, vblind;
 	int result;
 	if (!PyArg_ParseTuple (args, "O!O!", &PyLong_Type, &l, 
@@ -977,9 +1019,15 @@ rsaKey__unblind (rsaKey * key, PyObject * args)
 			return NULL;
 		}
 	r = (PyObject *) mpzToLongObj (v);
+	if (r == NULL) return NULL;
 	mpz_clear (v);
 	mpz_clear (vblind);
-	return Py_BuildValue ("N", r);
+	retval = Py_BuildValue ("N", r);
+	if (retval == NULL) {
+		Py_DECREF(r);
+		return NULL;
+	}
+	return retval;
 }
 
 static PyObject *
@@ -1025,7 +1073,7 @@ isPrime (PyObject * self, PyObject * args, PyObject * kwargs)
 	longObjToMPZ (n, (PyLongObject *) l);
 
 	Py_BEGIN_ALLOW_THREADS;
-	/* first check if n is known to be prime and do some trail division */
+	/* first check if n is known to be prime and do some trial division */
 	for (i = 0; i < SIEVE_BASE_SIZE; ++i)
 	{
 		if (mpz_cmp_ui (n, sieve_base[i]) == 0)
@@ -1099,10 +1147,15 @@ getRNG (void)
 	module_dict = PyModule_GetDict (module);
 	Py_DECREF (module);
 	new_func = PyDict_GetItemString (module_dict, "new");
+	if (new_func == NULL) {
+		PyErr_SetString (PyExc_RuntimeError,
+						 "Crypto.Random.new is missing.");
+		return NULL;
+	}
 	if (!PyCallable_Check (new_func))
 	{
 		PyErr_SetString (PyExc_RuntimeError,
-						 "Cryptor.Random.new is not callable.");
+						 "Crypto.Random.new is not callable.");
 		return NULL;
 	}
 	rng = PyObject_CallObject (new_func, NULL);
@@ -1153,7 +1206,15 @@ getRandomInteger (mpz_t n, unsigned long int bits, PyObject *randfunc_)
 	}
 
 	arglist = Py_BuildValue ("(l)", (long int)bytes);
+	if (arglist == NULL) {
+		return_val = 0;
+		goto cleanup;
+	}
 	rand_bytes = PyObject_CallObject (randfunc, arglist);
+	if (rand_bytes == NULL) {
+		return_val = 0;
+		goto cleanup;
+	}
 	Py_DECREF (arglist);
 	if (!PyBytes_Check (rand_bytes))
 	{
@@ -1292,8 +1353,12 @@ rabinMillerTest (mpz_t n, int rounds, PyObject *randfunc)
 	}
 
 	Py_BEGIN_ALLOW_THREADS;
-	if ((mpz_tstbit (n, 0) == 0) || (mpz_cmp_ui (n, 3) < 0))
-		return (mpz_cmp_ui (n, 2) == 0);
+	/* check special cases (n==2, n even, n < 2) */
+	if ((mpz_tstbit (n, 0) == 0) || (mpz_cmp_ui (n, 3) < 0)) {
+		return_val = (mpz_cmp_ui (n, 2) == 0);
+		Py_BLOCK_THREADS;
+		return return_val;
+	}
 
 	mpz_init (tmp);
 	mpz_init (n_1);
@@ -1650,6 +1715,9 @@ init_fastmath (void)
 #endif
  	_fastmath_dict = PyModule_GetDict (_fastmath_module);
 	fastmathError = PyErr_NewException ("_fastmath.error", NULL, NULL);
+#ifdef IS_PY3K
+	if (fastmathError == NULL) return NULL;
+#endif
  	PyDict_SetItemString (_fastmath_dict, "error", fastmathError);
 
 	PyModule_AddIntConstant(_fastmath_module, "HAVE_DECL_MPZ_POWM_SEC", HAVE_DECL_MPZ_POWM_SEC);

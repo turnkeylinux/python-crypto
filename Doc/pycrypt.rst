@@ -2,7 +2,7 @@
 Python Cryptography Toolkit
 ====================================
 
-**Version 2.5**
+**Version 2.6**
 
 The Python Cryptography Toolkit describes a package containing various
 cryptographic modules for the Python programming language.  This
@@ -304,9 +304,7 @@ byte-by-byte basis, and is much slower than either of the other two
 modes.  The chaining feedback modes require an initialization value to
 start off the encryption; this is a string of the same length as the
 ciphering algorithm's block size, and is passed to the ``new()``
-function.  There is also a special PGP mode, which is an oddball
-variant of CFB used by the PGP program.  While you can use it in
-non-PGP programs, it's quite non-standard.
+function. 
 
 The currently available block ciphers are listed in the following table,
 and are in the ``Crypto.Cipher`` package:
@@ -679,7 +677,6 @@ Algorithm		Capabilities
 RSA				Encryption, authentication/signatures
 ElGamal			Encryption, authentication/signatures
 DSA				Authentication/signatures
-qNEW			Authentication/signatures
 =============  ==========================================
 
 Many of these algorithms are patented.  Before using any of them in a
