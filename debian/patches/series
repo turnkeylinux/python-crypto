@@ -1,3 +1,7 @@
 dont-drop-g.patch
 fix-unresolved-reference-size.patch
 fix-epydoc-ignore.patch
+fix-cipher-iv-documentation.patch
+reenable-redefined-tests.patch
+fix-py3-errors.patch
+fix-except-shadows-builtin.patch

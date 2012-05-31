@@ -4,9 +4,15 @@ Priority: optional
 Maintainer: Sebastian Ramacher <s.ramacher@gmx.at>
 Uploaders: Andreas Rottmann <rotty@debian.org>,
  Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
-Build-Depends: debhelper (>= 8.1.0~), python-all-dev (>= 2.6.6-3~),
- python-all-dbg, libgmp-dev, python-epydoc, python-docutils,
- python3-all-dev, python3-all-dbg
+Build-Depends:
+ debhelper (>= 9),
+ python-all-dev (>= 2.6.6-3~),
+ python-all-dbg,
+ libgmp-dev, 
+ python3-all-dev,
+ python3-all-dbg,
+ python-epydoc,
+ python-docutils
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
 Standards-Version: 3.9.3

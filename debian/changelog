@@ -1,3 +1,27 @@
+python-crypto (2.6-2) unstable; urgency=low
+
+  * debian/patches:
+    - fix-cipher-iv-documentation.patch: Add patch from Stefano Rivera to
+      document the actual behavior of the ciphers' new method with respect to
+      the IV.
+    - fix-epydoc-ignore.patch: Mark as forwarded.
+    - reenable-redefined-tests.patch: Re-enable tests that have been redefined.
+      Thanks to Jakub Wilk's lintian4python.
+    - fix-py3-errors.patch: Fix Python 3 compatibility issues revealed by the
+      re-enabled tests.
+    - fix-except-shadows-builtin.patch: Fix 'except shadows builtin' error
+      found by lintian4python.
+  * debian/compat: Bump to 9.
+  * debian/control: Bump Build-Dep on debhelper to >= 9.
+  * debian/rules:
+    - Run loops with set -ex.
+    - Merge Python 2 and Python 3 loops. This can be done at once.
+    - Don't call dh_install twice.
+    - Build documentation in override_dh_auto_build.
+    - Drop the *FLAGS exports.
+
+ -- Sebastian Ramacher <s.ramacher@gmx.at>  Thu, 31 May 2012 11:46:10 +0200
+
 python-crypto (2.6-1) unstable; urgency=high
 
   * New upstream release.

@@ -1,6 +1,7 @@
-Description: fix exlcude-introspect stanza in epydoc-config
+Description: fix exclude-introspect stanza in epydoc-config
 Author: Sebastian Ramacher <s.ramacher@gmx.at>
-Last-Modified: 2012-01-13
+Last-Modified: 2012-08-28
+Forwarded: https://github.com/dlitz/pycrypto/pull/17
 
 diff --git a/Doc/epydoc-config b/Doc/epydoc-config
 index 018e461..40209f7 100644
