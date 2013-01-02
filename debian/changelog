@@ -1,3 +1,12 @@
+python-crypto (2.6-3) unstable; urgency=low
+
+  * debian/{control,copyright}: Update my mail address.
+  * debian/control:
+    - Remove DM-Upload-Allowed.
+    - Add Breaks python{,3}-keyring (<= 0.7.1-1) to python{,3}-crypto.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 03 Jan 2013 00:32:03 +0100
+
 python-crypto (2.6-2) unstable; urgency=low
 
   * debian/patches:

@@ -1,7 +1,7 @@
 Source: python-crypto
 Section: python
 Priority: optional
-Maintainer: Sebastian Ramacher <s.ramacher@gmx.at>
+Maintainer: Sebastian Ramacher <sramacher@debian.org>
 Uploaders: Andreas Rottmann <rotty@debian.org>,
  Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
 Build-Depends:
@@ -19,7 +19,6 @@ Standards-Version: 3.9.3
 Vcs-Svn: svn://svn.debian.org/svn/python-modules/packages/python-crypto/trunk/
 Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/python-crypto/trunk/
 Homepage: http://www.pycrypto.org/
-DM-Upload-Allowed: yes
 
 Package: python-crypto
 Architecture: any
@@ -28,6 +27,7 @@ Conflicts: python2.3-crypto, python2.4-crypto
 Replaces: python2.3-crypto, python2.4-crypto
 Provides: ${python:Provides}
 Suggests: python-crypto-dbg, python-crypto-doc
+Breaks: python-keyring (<= 0.7.1-1)
 Description: cryptographic algorithms and protocols for Python
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python. Among the contents of the package:
@@ -58,6 +58,7 @@ Architecture: any
 Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Provides: ${python3:Provides}
 Suggests: python3-crypto-dbg, python-crypto-doc
+Breaks: python3-keyring (<= 0.7.1-1)
 Description: cryptographic algorithms and protocols for Python 3
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python 3. Among the contents of the package:
