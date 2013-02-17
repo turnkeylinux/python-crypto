@@ -1,3 +1,11 @@
+python-crypto (2.6-4) unstable; urgency=low
+
+  * debian/python-crypto-dbg.preinst: Add preinst script to handle symlink to
+    directory conversion for /usr/share/doc/python-crypto-dbg. Thanks to
+    Andreas Beckmann for the report. (Closes: #700778)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 17 Feb 2013 16:24:21 +0100
+
 python-crypto (2.6-3) unstable; urgency=low
 
   * debian/{control,copyright}: Update my mail address.
