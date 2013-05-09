@@ -8,17 +8,18 @@ Build-Depends:
  debhelper (>= 9),
  python-all-dev (>= 2.6.6-3~),
  python-all-dbg,
- libgmp-dev, 
+ libgmp-dev,
  python3-all-dev,
  python3-all-dbg,
  python-epydoc,
  python-docutils
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
-Standards-Version: 3.9.3
-Vcs-Svn: svn://svn.debian.org/svn/python-modules/packages/python-crypto/trunk/
+Standards-Version: 3.9.4
+Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/python-crypto/trunk/
 Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/python-crypto/trunk/
 Homepage: http://www.pycrypto.org/
+XS-Testsuite: autopkgtest
 
 Package: python-crypto
 Architecture: any

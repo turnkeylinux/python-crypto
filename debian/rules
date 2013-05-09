@@ -40,16 +40,6 @@ override_dh_auto_install:
 		python$$pyvers-dbg setup.py install --install-layout=deb --root $(CURDIR)/debian/tmp; \
 	done
 
-override_dh_install:
-	# Install everything excluding the *_d.so/*dmu.so debug extensions to python(3)-crypto
-	dh_install -X"_d.so" -X"python3" "debian/tmp/*" -p python-crypto
-	dh_install -X"dmu.so" -X"python2" "debian/tmp/*" -p python3-crypto
-	# Install the debug extensions to python(3)-crypto-dbg
-	find debian/tmp/ -name "*_d.so" -exec dh_install '{}' -p python-crypto-dbg \;
-	find debian/tmp/ -name "*dmu.so" -exec dh_install '{}' -p python3-crypto-dbg \;
-	# Continue with regular dh_install
-	dh_install
-
 override_dh_auto_test:
 ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
 	set -ex && for py in $(PYVERS) $(PY3VERS); do \

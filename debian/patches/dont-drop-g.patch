@@ -1,7 +1,8 @@
 Description: don't drop -g and optimization values from the call to gcc
  The binaries will be stripped later anyway and CFLAGS contains the correct
  flags.
-Origin: Sebastian Ramacher <s.ramacher@gmx.at>
+Author: Sebastian Ramacher <sramacher@debian.org>
+Origin: vendor
 Last-Update: 2011-11-12
 Forwarded: no
 

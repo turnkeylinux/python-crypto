@@ -1,0 +1,17 @@
+Tests: python2
+Depends: python-crypto
+
+Tests: python2-all
+Depends: python-all, python-crypto
+
+Tests: python2-all-dbg
+Depends: python-all-dbg, python-crypto-dbg
+
+Tests: python3
+Depends: python3-crypto
+
+Tests: python3-all
+Depends: python3-all, python3-crypto
+
+Tests: python3-all-dbg
+Depends: python3-all-dbg, python3-crypto-dbg

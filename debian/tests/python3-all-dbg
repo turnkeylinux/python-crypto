@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+
+PYVERS=$(py3versions -vi)
+
+for py in $PYVERS ; do
+  python$py-dbg -c "import Crypto.SelfTest; Crypto.SelfTest.run()" \
+    2> >( egrep -v "RandomPool_DeprecationWarning|\[[[:digit:]]+ refs\]" >&2 )
+done

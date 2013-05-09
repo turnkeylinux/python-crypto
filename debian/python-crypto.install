@@ -1,0 +1,6 @@
+usr/lib/python2*/*-packages/*.egg-info
+usr/lib/python2*/*-packages/Crypto/*.py
+usr/lib/python2*/*-packages/Crypto/*/*.py
+usr/lib/python2*/*-packages/Crypto/*/*/*.py
+usr/lib/python2*/*-packages/Crypto/SelfTest/*
+usr/lib/python2*/*-packages/Crypto/*/*[!_][!d].so

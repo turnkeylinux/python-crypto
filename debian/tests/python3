@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+python3 -c "import Crypto.SelfTest; Crypto.SelfTest.run()" \
+  2> >( grep -v RandomPool_DeprecationWarning >&2 )

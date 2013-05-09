@@ -1,24 +1,20 @@
-python-crypto (2.6-4+deb7u3) wheezy-security; urgency=low
+python-crypto (2.6-5) unstable; urgency=low
 
-  * debian/patches/CVE-2013-1445.patch: Disable multiprocessing tests on
-    kfreebsd-* completely since Python 2.6 and 2.7 report different errors if
-    multiprocessing is not working.
+  * debian/patches/dont-drop-g.patch: Fix Origin and add Author.
+  * Install extensions for Python 3.3 to the correct packages. (Closes:
+    #707654)
+    * debian/rules: Drop override_dh_install.
+    * debian/python{,3}-crypto{,-dbg}.install: Add proper .install files.
+  * debian/control:
+    - Bump Standards-Version to 3.9.4, no changes needed.
+    - Use anonscm.debian.org in Vcs-Svn too.
+  * debian/python{,3}-crypto.pydist: Help dh_python2 to translate pycrypto in
+    requirements.txt to the correct Debian package.
+  * debian/tests: Add DEP-8 tests.
+  * debian/copyright: Update copyright years.
+  * debian/python{,3}-crypto.docs: Don't install TODO as it's not useful.
 
- -- Sebastian Ramacher <sramacher@debian.org>  Fri, 18 Oct 2013 14:21:33 +0200
-
-python-crypto (2.6-4+deb7u2) wheezy-security; urgency=low
-
-  * debian/patches/CVE-2013-1445.patch: Check if multiprocessing.synchronize
-    is working in the test suite to fix a build failure on kfreebsd-*.
-
- -- Sebastian Ramacher <sramacher@debian.org>  Fri, 18 Oct 2013 01:07:38 +0200
-
-python-crypto (2.6-4+deb7u1) wheezy-security; urgency=high
-
-  * debian/patches/CVE-2013-1445.patch: Apply upstream patch to fix
-    CVE-2013-1445: PRNG not correctly reseeded in some situations.
-
- -- Sebastian Ramacher <sramacher@debian.org>  Thu, 17 Oct 2013 21:55:30 +0200
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 10 May 2013 01:32:46 +0200
 
 python-crypto (2.6-4) unstable; urgency=low
 
