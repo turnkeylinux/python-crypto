@@ -1,3 +1,11 @@
+python-crypto (2.1.0-2+squeeze2) squeeze-security; urgency=high
+
+  * Non-maintainer upload.
+  * debian/patches/CVE-2013-1445.patch: Apply upstream patch to fix
+    CVE-2013-1445: PRNG not correctly reseeded in some situations.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 15 Oct 2013 18:45:52 +0200
+
 python-crypto (2.1.0-2+squeeze1) stable-security; urgency=high
 
   * Non-maintainer upload.

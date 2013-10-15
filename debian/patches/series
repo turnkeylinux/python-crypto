@@ -2,3 +2,4 @@
 no-usr-local.patch
 doc.patch
 elgamal-keygen.patch
+CVE-2013-1445.patch
