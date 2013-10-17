@@ -1,3 +1,11 @@
+python-crypto (2.6.1-2) unstable; urgency=low
+
+  * debian/patches/multiprocessing-test.patch: Check if
+    multiprocessing.synchronize is working before running tests that use it.
+    Fixes build failures on kfreebsd-*.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 17 Oct 2013 22:02:39 +0200
+
 python-crypto (2.6.1-1) unstable; urgency=high
 
   [ Jakub Wilk ]
