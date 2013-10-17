@@ -24,8 +24,6 @@ XS-Testsuite: autopkgtest
 Package: python-crypto
 Architecture: any
 Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Conflicts: python2.3-crypto, python2.4-crypto
-Replaces: python2.3-crypto, python2.4-crypto
 Provides: ${python:Provides}
 Suggests: python-crypto-dbg, python-crypto-doc
 Breaks: python-keyring (<= 0.7.1-1)

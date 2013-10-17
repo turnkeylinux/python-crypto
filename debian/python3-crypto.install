@@ -3,4 +3,4 @@ usr/lib/python3/*-packages/Crypto/*.py
 usr/lib/python3/*-packages/Crypto/*/*.py
 usr/lib/python3/*-packages/Crypto/*/*/*.py
 usr/lib/python3/*-packages/Crypto/SelfTest/*
-usr/lib/python3/*-packages/Crypto/*/*[!d]m{,u}.so
+usr/lib/python3/*-packages/Crypto/*/*.*[!d]m*.so
