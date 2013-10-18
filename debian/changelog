@@ -1,3 +1,25 @@
+python-crypto (2.6-4+deb7u3) wheezy-security; urgency=low
+
+  * debian/patches/CVE-2013-1445.patch: Disable multiprocessing tests on
+    kfreebsd-* completely since Python 2.6 and 2.7 report different errors if
+    multiprocessing is not working.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 18 Oct 2013 14:21:33 +0200
+
+python-crypto (2.6-4+deb7u2) wheezy-security; urgency=low
+
+  * debian/patches/CVE-2013-1445.patch: Check if multiprocessing.synchronize
+    is working in the test suite to fix a build failure on kfreebsd-*.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 18 Oct 2013 01:07:38 +0200
+
+python-crypto (2.6-4+deb7u1) wheezy-security; urgency=high
+
+  * debian/patches/CVE-2013-1445.patch: Apply upstream patch to fix
+    CVE-2013-1445: PRNG not correctly reseeded in some situations.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 17 Oct 2013 21:55:30 +0200
+
 python-crypto (2.6-4) unstable; urgency=low
 
   * debian/python-crypto-dbg.preinst: Add preinst script to handle symlink to
