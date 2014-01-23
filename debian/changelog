@@ -1,3 +1,17 @@
+python-crypto (2.6.1-3) unstable; urgency=low
+
+  * debian/control:
+    - Fix some mistakes in Description. (Closes: #729241)
+    - Bump Standards-Version to 3.9.5.
+  * debian/watch: Only honor stable releases.
+  * debian/{watch,upstream-signing-key.pgp}: Check signature of the orig
+    tarball.
+  * debian/patches/unittest-stream.patch: Fix stream handling in SelfTest.
+    Otherwise the actual error won't get printed and an unrelated exception
+    will be thrown.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 24 Jan 2014 00:20:53 +0100
+
 python-crypto (2.6.1-2) unstable; urgency=low
 
   * debian/patches/multiprocessing-test.patch: Check if

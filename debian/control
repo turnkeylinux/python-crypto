@@ -15,7 +15,7 @@ Build-Depends:
  python-docutils
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/python-crypto/trunk/
 Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/python-crypto/trunk/
 Homepage: http://www.pycrypto.org/
@@ -36,8 +36,8 @@ Description: cryptographic algorithms and protocols for Python
   * Stream encryption algorithms: ARC4, simple XOR.
   * Public-key algorithms: RSA, DSA, ElGamal.
   * Protocols: All-or-nothing transforms, chaffing/winnowing.
-  * Miscellaneous: RFC1751 module for converting 128-key keys
-    into a set of English words, primality testing, random number gereration.
+  * Miscellaneous: RFC1751 module for converting 128-bit keys
+    into a set of English words, primality testing, random number generation.
 
 Package: python-crypto-dbg
 Section: debug
@@ -67,8 +67,8 @@ Description: cryptographic algorithms and protocols for Python 3
   * Stream encryption algorithms: ARC4, simple XOR.
   * Public-key algorithms: RSA, DSA, ElGamal.
   * Protocols: All-or-nothing transforms, chaffing/winnowing.
-  * Miscellaneous: RFC1751 module for converting 128-key keys
-    into a set of English words, primality testing, random number gereration.
+  * Miscellaneous: RFC1751 module for converting 128-bit keys
+    into a set of English words, primality testing, random number generation.
 
 Package: python3-crypto-dbg
 Section: debug
