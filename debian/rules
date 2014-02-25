@@ -1,52 +1,24 @@
 #!/usr/bin/make -f
 
-# Get the supported Python versions
-PYVERS = $(shell pyversions -vr)
-# Get the default Python version
-PYVERSION = $(shell pyversions -vd)
-# Get the supported Python3 versions
-PY3VERS = $(shell py3versions -vr)
-
-# Callable functions to determine the correct PYTHONPATH
-pythonpath = $$(ls -d $(CURDIR)/build/lib.*-$(1))
-pythonpath_dbg = $$(ls -d $(CURDIR)/build/lib_d.*-$(1) 2>/dev/null || ls -d $(CURDIR)/build/lib.*$(1)-pydebug)
-
 # build with -O3 (as upstream does) if noopt is not set
 ifeq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
 export DEB_CFLAGS_MAINT_APPEND=-O3
 endif
 
 %:
-	dh $@ --with=python2,python3
-
-override_dh_auto_clean:
-	rm -rf build
-	dh_auto_clean
+	dh $@ --with=python2,python3 --buildsystem=pybuild
 
 override_dh_clean:
 	# Keep LEGAL/copy/LICENSE.orig
 	dh_clean -XLEGAL/copy/LICENSE.orig
 
-override_dh_auto_build:
-	set -ex && for pyvers in $(PYVERS) $(PY3VERS); do \
-		python$$pyvers setup.py build; \
-		python$$pyvers-dbg setup.py build; \
-	done
-	PYTHONPATH=$(call pythonpath,${PYVERSION}) epydoc --config Doc/epydoc-config
-
-override_dh_auto_install:
-	set -ex && for pyvers in $(PYVERS) $(PY3VERS); do \
-		python$$pyvers setup.py install --install-layout=deb --root $(CURDIR)/debian/tmp; \
-		python$$pyvers-dbg setup.py install --install-layout=deb --root $(CURDIR)/debian/tmp; \
-	done
+override_dh_auto_build-indep:
+	pybuild --build -p $(shell pyversions -vd)
+	pybuild -s custom --build -p $(shell pyversions -vd) \
+		--build-args="env PYTHONPATH={build_dir} epydoc --config Doc/epydoc-config"
 
 override_dh_auto_test:
-ifeq (,$(findstring nocheck,$(DEB_BUILD_OPTIONS)))
-	set -ex && for py in $(PYVERS) $(PY3VERS); do \
-		PYTHONPATH=$(call pythonpath,$$py) python$$py setup.py test ;\
-		PYTHONPATH=$(call pythonpath_dbg,$$py) python$$py-dbg setup.py test ;\
-	done
-endif
+	dh_auto_test -- -s custom --test-args="{interpreter} setup.py test"
 
 override_dh_strip:
 	dh_strip -X"python3" --dbg-package=python-crypto-dbg

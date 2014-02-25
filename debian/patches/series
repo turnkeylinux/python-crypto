@@ -7,3 +7,4 @@ fix-py3-errors.patch
 fix-except-shadows-builtin.patch
 multiprocessing-test.patch
 unittest-stream.patch
+deprecated-test-methods.patch

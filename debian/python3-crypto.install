@@ -1,6 +1,6 @@
-usr/lib/python3/*-packages/*.egg-info
-usr/lib/python3/*-packages/Crypto/*.py
-usr/lib/python3/*-packages/Crypto/*/*.py
-usr/lib/python3/*-packages/Crypto/*/*/*.py
-usr/lib/python3/*-packages/Crypto/SelfTest/*
-usr/lib/python3/*-packages/Crypto/*/*.*[!d]m*.so
+usr/lib/python3*/*-packages/*.egg-info
+usr/lib/python3*/*-packages/Crypto/*.py
+usr/lib/python3*/*-packages/Crypto/*/*.py
+usr/lib/python3*/*-packages/Crypto/*/*/*.py
+usr/lib/python3*/*-packages/Crypto/SelfTest/*
+usr/lib/python3*/*-packages/Crypto/*/*.cpython-3[0-9]m-*.so

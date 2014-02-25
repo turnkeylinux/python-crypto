@@ -1,3 +1,24 @@
+python-crypto (2.6.1-4) unstable; urgency=medium
+
+  * debian/python3-crypto{,-dbg}.install: Fix wildcards to not include debug
+    extensions with arm in the name in python3-crypto. (Closes: #740086)
+    - Extensions built for Python 3.2 are no longer handled, so this requires
+      python3-all-dev >= 3.3.2-5.
+  * Use pybuild buildsystem:
+    - debian/control: Add dh-python to Build-Depends.
+    - debian/rules:
+      + Pass --buildsystem=pybuild to dh.
+      + Remove dh_auto_clean, dh_auto_build and dh_auto_install overrides.
+      + Adapt dh_auto_test override for pybuild.
+  * Build documention in -indep targets:
+    - debian/control: Move python-docutils and python-epydoc to
+      Build-Depends-Indep.
+    - debian/rules: Build documentation in override_dh_auto_build-indep.
+  * debian/patches/deprecated-test-methods.patch: Replace deprecated unittest
+    methods. Python 3.3's and 3.4's 2to3 generate different files otherwise.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 25 Feb 2014 23:16:33 +0100
+
 python-crypto (2.6.1-3) unstable; urgency=low
 
   * debian/control:
