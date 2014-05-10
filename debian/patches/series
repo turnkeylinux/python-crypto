@@ -8,3 +8,4 @@ fix-except-shadows-builtin.patch
 multiprocessing-test.patch
 unittest-stream.patch
 deprecated-test-methods.patch
+asn1-decoding.patch

@@ -1,3 +1,10 @@
+python-crypto (2.6.1-5) unstable; urgency=medium
+
+  * debian/patches/asn1-decoding.patch: Fix TypeError in ASN1 implementation.
+    Thanks to Stefanos Harhalakis for the patch. (Closes: #746180)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 10 May 2014 19:27:03 +0200
+
 python-crypto (2.6.1-4) unstable; urgency=medium
 
   * debian/python3-crypto{,-dbg}.install: Fix wildcards to not include debug
