@@ -27,7 +27,6 @@ Architecture: any
 Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Provides: ${python:Provides}
 Suggests: python-crypto-dbg, python-crypto-doc
-Breaks: python-keyring (<= 0.7.1-1)
 Description: cryptographic algorithms and protocols for Python
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python. Among the contents of the package:
@@ -58,7 +57,6 @@ Architecture: any
 Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Provides: ${python3:Provides}
 Suggests: python3-crypto-dbg, python-crypto-doc
-Breaks: python3-keyring (<= 0.7.1-1)
 Description: cryptographic algorithms and protocols for Python 3
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python 3. Among the contents of the package:
@@ -88,8 +86,6 @@ Package: python-crypto-doc
 Section: doc
 Architecture: all
 Depends: ${misc:Depends}
-Breaks: python-crypto (<< 2.3)
-Replaces: python-crypto (<< 2.3)
 Description: cryptographic algorithms and protocols for Python (documentation)
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python.
