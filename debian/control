@@ -17,7 +17,7 @@ Build-Depends-Indep:
  python-docutils
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
-Standards-Version: 3.9.5
+Standards-Version: 3.9.6
 Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/python-crypto/trunk/
 Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/python-crypto/trunk/
 Homepage: http://www.pycrypto.org/
