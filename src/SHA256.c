@@ -8,23 +8,52 @@
  *
  * Revised Code:  Complies to SHA-256 standard now.
  *
- * Tom St Denis -- http://tomstdenis.home.dhs.org
- * */
+ * Originally written by Tom St Denis -- http://tomstdenis.home.dhs.org
+ *
+ * Adapted for PyCrypto by Jeethu Rao, Taylor Boon, and others.
+ *
+ * ===================================================================
+ * The contents of this file are dedicated to the public domain.  To
+ * the extent that dedication to the public domain is not available,
+ * everyone is granted a worldwide, perpetual, royalty-free,
+ * non-exclusive license to exercise all rights associated with the
+ * contents of this file for any purpose whatsoever.
+ * No rights are reserved.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+ * BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * ===================================================================
+ *
+ */
 #include "Python.h"
 #define MODULE_NAME SHA256
 #define DIGEST_SIZE 32
 
 typedef unsigned char U8;
+#ifdef __alpha__
+typedef    unsigned int        U32;
+#elif defined(__amd64__)
+#include <inttypes.h>
+typedef uint32_t U32;
+#else
 typedef unsigned int U32;
+#endif
 
 typedef struct {
-    unsigned long state[8], length, curlen;
+    U32 state[8], curlen;
+    U32 length_upper, length_lower;
     unsigned char buf[64];
 }
 hash_state;
 
 /* the K array */
-static const unsigned long K[64] = {
+static const U32 K[64] = {
     0x428a2f98UL, 0x71374491UL, 0xb5c0fbcfUL, 0xe9b5dba5UL, 0x3956c25bUL,
     0x59f111f1UL, 0x923f82a4UL, 0xab1c5ed5UL, 0xd807aa98UL, 0x12835b01UL,
     0x243185beUL, 0x550c7dc3UL, 0x72be5d74UL, 0x80deb1feUL, 0x9bdc06a7UL,
@@ -53,7 +82,7 @@ static const unsigned long K[64] = {
 /* compress 512-bits */
 static void sha_compress(hash_state * md)
 {
-    unsigned long S[8], W[64], t0, t1;
+    U32 S[8], W[64], t0, t1;
     int i;
 
     /* copy state into S */
@@ -62,10 +91,10 @@ static void sha_compress(hash_state * md)
 
     /* copy the state into 512-bits into W[0..15] */
     for (i = 0; i < 16; i++)
-        W[i] = (((unsigned long) md->buf[(4 * i) + 0]) << 24) |
-            (((unsigned long) md->buf[(4 * i) + 1]) << 16) |
-            (((unsigned long) md->buf[(4 * i) + 2]) << 8) |
-            (((unsigned long) md->buf[(4 * i) + 3]));
+        W[i] = (((U32) md->buf[(4 * i) + 0]) << 24) |
+            (((U32) md->buf[(4 * i) + 1]) << 16) |
+            (((U32) md->buf[(4 * i) + 2]) << 8) |
+            (((U32) md->buf[(4 * i) + 3]));
 
     /* fill W[16..63] */
     for (i = 16; i < 64; i++)
@@ -91,9 +120,9 @@ static void sha_compress(hash_state * md)
 }
 
 /* init the SHA state */
-void sha_init(hash_state * md)
+static void sha_init(hash_state * md)
 {
-    md->curlen = md->length = 0;
+    md->curlen = md->length_upper = md->length_lower = 0;
     md->state[0] = 0x6A09E667UL;
     md->state[1] = 0xBB67AE85UL;
     md->state[2] = 0x3C6EF372UL;
@@ -104,7 +133,7 @@ void sha_init(hash_state * md)
     md->state[7] = 0x5BE0CD19UL;
 }
 
-void sha_process(hash_state * md, unsigned char *buf, int len)
+static void sha_process(hash_state * md, unsigned char *buf, int len)
 {
     while (len--) {
         /* copy byte */
@@ -112,28 +141,38 @@ void sha_process(hash_state * md, unsigned char *buf, int len)
 
         /* is 64 bytes full? */
         if (md->curlen == 64) {
+	    U32 orig_length;
             sha_compress(md);
-            md->length += 512;
+	    orig_length = md->length_lower;
+            md->length_lower += 512;
+	    if (orig_length > md->length_lower) {
+	      md->length_upper++;
+	    }
             md->curlen = 0;
         }
     }
 }
 
-void sha_done(hash_state * md, unsigned char *hash)
+static void sha_done(hash_state * md, unsigned char *hash)
 {
     int i;
+    U32 orig_length;
 
     /* increase the length of the message */
-    md->length += md->curlen * 8;
+    orig_length = md->length_lower;
+    md->length_lower += md->curlen * 8;
+    if (orig_length > md->length_lower) {
+        md->length_upper++;
+    }
 
     /* append the '1' bit */
     md->buf[md->curlen++] = 0x80;
 
-    /* if the length is currenlly above 56 bytes we append zeros
-                               * then compress.  Then we can fall back to padding zeros and length
-                               * encoding like normal.
-                             */
-    if (md->curlen >= 56) {
+    /* if the length is currently above 56 bytes we append zeros
+     * then compress.  Then we can fall back to padding zeros and length
+     * encoding like normal.
+     */
+    if (md->curlen > 56) {
         for (; md->curlen < 64;)
             md->buf[md->curlen++] = 0;
         sha_compress(md);
@@ -144,13 +183,11 @@ void sha_done(hash_state * md, unsigned char *hash)
     for (; md->curlen < 56;)
         md->buf[md->curlen++] = 0;
 
-    /* since all messages are under 2^32 bits we mark the top bits zero */
-    for (i = 56; i < 60; i++)
-        md->buf[i] = 0;
-
     /* append length */
+    for (i = 56; i < 60; i++)
+        md->buf[i] = (md->length_upper >> ((59 - i) * 8)) & 255;
     for (i = 60; i < 64; i++)
-        md->buf[i] = (md->length >> ((63 - i) * 8)) & 255;
+        md->buf[i] = (md->length_lower >> ((63 - i) * 8)) & 255;
     sha_compress(md);
 
     /* copy output */
@@ -165,7 +202,7 @@ static void hash_init (hash_state *ptr)
 }
 
 // Done
-static void 
+static void
 hash_update (hash_state *self, const U8 *buf, U32 len)
 {
 	sha_process(self,(unsigned char *)buf,len);
@@ -187,7 +224,7 @@ hash_digest (const hash_state *self)
 
 	hash_copy((hash_state*)self,&temp);
 	sha_done(&temp,digest);
-	return PyString_FromStringAndSize(digest, 32);
+	return PyString_FromStringAndSize((char *)digest, 32);
 }
 
 #include "hash_template.c"
