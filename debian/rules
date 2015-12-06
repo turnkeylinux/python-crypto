@@ -17,8 +17,12 @@ override_dh_auto_build-indep:
 	pybuild -s custom --build -p $(shell pyversions -vd) \
 		--build-args="env PYTHONPATH={build_dir} epydoc --config Doc/epydoc-config"
 
-override_dh_auto_test:
+override_dh_auto_test-arch:
 	dh_auto_test -- -s custom --test-args="{interpreter} setup.py test"
+
+# no test and install for indep
+override_dh_auto_install-indep override_dh_auto_test-indep:
+
 
 override_dh_strip:
 	dh_strip -X"python3" --dbg-package=python-crypto-dbg
