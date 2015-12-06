@@ -117,6 +117,10 @@ class PCTBuildExt (build_ext):
             # Tell GCC to compile using the C99 standard.
             self.__add_compiler_option("-std=c99")
 
+            # ... but don't tell that to the aCC compiler on HP-UX
+            if self.compiler.compiler_so[0] == 'cc' and sys.platform.startswith('hp-ux'):
+                self.__remove_compiler_option("-std=c99")
+
             # Make assert() statements always work
             self.__remove_compiler_option("-DNDEBUG")
 
@@ -338,7 +342,7 @@ class TestCommand(Command):
         self.announce("running extended self-tests")
 
 kw = {'name':"pycrypto",
-      'version':"2.5",  # See also: lib/Crypto/__init__.py
+      'version':"2.6",  # See also: lib/Crypto/__init__.py
       'description':"Cryptographic modules for Python.",
       'author':"Dwayne C. Litzenberger",
       'author_email':"dlitz@dlitz.net",
@@ -395,30 +399,30 @@ kw = {'name':"pycrypto",
                       define_macros=[endianness_macro()]),
 
             # Block encryption algorithms
-            Extension("Crypto.Cipher.AES",
+            Extension("Crypto.Cipher._AES",
                       include_dirs=['src/'],
                       sources=["src/AES.c"]),
-            Extension("Crypto.Cipher.ARC2",
+            Extension("Crypto.Cipher._ARC2",
                       include_dirs=['src/'],
                       sources=["src/ARC2.c"]),
-            Extension("Crypto.Cipher.Blowfish",
+            Extension("Crypto.Cipher._Blowfish",
                       include_dirs=['src/'],
                       sources=["src/Blowfish.c"]),
-            Extension("Crypto.Cipher.CAST",
+            Extension("Crypto.Cipher._CAST",
                       include_dirs=['src/'],
                       sources=["src/CAST.c"]),
-            Extension("Crypto.Cipher.DES",
+            Extension("Crypto.Cipher._DES",
                       include_dirs=['src/', 'src/libtom/'],
                       sources=["src/DES.c"]),
-            Extension("Crypto.Cipher.DES3",
+            Extension("Crypto.Cipher._DES3",
                       include_dirs=['src/', 'src/libtom/'],
                       sources=["src/DES3.c"]),
 
             # Stream ciphers
-            Extension("Crypto.Cipher.ARC4",
+            Extension("Crypto.Cipher._ARC4",
                       include_dirs=['src/'],
                       sources=["src/ARC4.c"]),
-            Extension("Crypto.Cipher.XOR",
+            Extension("Crypto.Cipher._XOR",
                       include_dirs=['src/'],
                       sources=["src/XOR.c"]),
 
@@ -438,7 +442,7 @@ kw = {'name':"pycrypto",
 if hasattr(core, 'setup_keywords'):
     if 'classifiers' in core.setup_keywords:
         kw['classifiers'] = [
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'License :: Public Domain',
           'Intended Audience :: Developers',
           'Operating System :: Unix',
