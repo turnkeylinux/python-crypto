@@ -1,8 +1,14 @@
-python-crypto (2.6.1-6) UNRELEASED; urgency=medium
+python-crypto (2.6.1-6) unstable; urgency=medium
 
-  * 
+  * debian/control:
+    - Bump Standards-Version.
+    - Remove XS-Testsuite, no longer needed.
+    - Remove obsolete Breaks+Replaces
+    - Move to collab-maint.
+  * debian/rules: Do not run tests if only building arch all packages. (Closes:
+    #806866)
 
- -- Sebastian Ramacher <sramacher@debian.org>  Sun, 06 Dec 2015 14:37:36 +0100
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 06 Dec 2015 15:03:15 +0100
 
 python-crypto (2.6.1-5) unstable; urgency=medium
 
