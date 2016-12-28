@@ -22,8 +22,3 @@ override_dh_auto_test-arch:
 
 # no test and install for indep
 override_dh_auto_install-indep override_dh_auto_test-indep:
-
-
-override_dh_strip:
-	dh_strip -X"python3" --dbg-package=python-crypto-dbg
-	dh_strip -X"python2" --dbg-package=python3-crypto-dbg
