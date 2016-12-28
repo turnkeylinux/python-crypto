@@ -1,10 +1,17 @@
-python-crypto (2.6.1-7) UNRELEASED; urgency=high
+python-crypto (2.6.1-7) unstable; urgency=high
 
   [ Salvatore Bonaccorso ]
   * Throw exception when IV is used with ECB or CTR (CVE-2013-7459)
     (Closes: #849495)
 
- -- Sebastian Ramacher <sebastian.ramacher@iaik.tugraz.at>  Wed, 28 Dec 2016 11:29:16 +0100
+  [ Sebastian Ramacher ]
+  * debian/control:
+    - Bump Standards-Version.
+    - Update Vcs-Git
+  * debian/rules: Remove dh_strip override for automatic dbgsym packages.
+  * debian/{control,compat}: Bump debhelper compat to 10.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 28 Dec 2016 11:45:21 +0100
 
 python-crypto (2.6.1-6) unstable; urgency=medium
 
