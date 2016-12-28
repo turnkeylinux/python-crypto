@@ -1,3 +1,11 @@
+python-crypto (2.6.1-7) UNRELEASED; urgency=high
+
+  [ Salvatore Bonaccorso ]
+  * Throw exception when IV is used with ECB or CTR (CVE-2013-7459)
+    (Closes: #849495)
+
+ -- Sebastian Ramacher <sebastian.ramacher@iaik.tugraz.at>  Wed, 28 Dec 2016 11:29:16 +0100
+
 python-crypto (2.6.1-6) unstable; urgency=medium
 
   * debian/control:

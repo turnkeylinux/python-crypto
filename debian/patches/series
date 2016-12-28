@@ -9,3 +9,4 @@ multiprocessing-test.patch
 unittest-stream.patch
 deprecated-test-methods.patch
 asn1-decoding.patch
+CVE-2013-7459.patch
