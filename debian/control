@@ -17,7 +17,7 @@ Build-Depends-Indep:
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
 Standards-Version: 3.9.8
-Vcs-Git: git://anonscm.debian.org/collab-maint/python-crypto.git
+Vcs-Git: https://anonscm.debian.org/git/collab-maint/python-crypto.git
 Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/python-crypto.git
 Homepage: http://www.pycrypto.org/
 
