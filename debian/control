@@ -2,18 +2,19 @@ Source: python-crypto
 Section: python
 Priority: optional
 Maintainer: Sebastian Ramacher <sramacher@debian.org>
-Uploaders: Andreas Rottmann <rotty@debian.org>
+Uploaders:
+ Andreas Rottmann <rotty@debian.org>
 Build-Depends:
  debhelper (>= 10),
  dh-python,
- python-all-dev,
- python-all-dbg,
  libgmp-dev,
- python3-all-dev (>= 3.3.2-5~),
- python3-all-dbg
+ python-all-dbg,
+ python-all-dev,
+ python3-all-dbg,
+ python3-all-dev (>= 3.3.2-5~)
 Build-Depends-Indep:
- python-epydoc,
- python-docutils
+ python-docutils,
+ python-epydoc
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
 Standards-Version: 3.9.8
@@ -23,8 +24,12 @@ Homepage: http://www.pycrypto.org/
 
 Package: python-crypto
 Architecture: any
-Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Provides: ${python:Provides}
+Depends:
+ ${misc:Depends},
+ ${python:Depends},
+ ${shlibs:Depends}
+Provides:
+ ${python:Provides}
 Suggests:
  python-crypto-doc
 Description: cryptographic algorithms and protocols for Python
@@ -47,7 +52,8 @@ Depends:
  ${misc:Depends},
  ${python:Depends},
  ${shlibs:Depends}
-Provides: ${python:Provides}
+Provides:
+ ${python:Provides}
 Description: cryptographic algorithms and protocols for Python (debug extension)
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python.
@@ -56,8 +62,12 @@ Description: cryptographic algorithms and protocols for Python (debug extension)
 
 Package: python3-crypto
 Architecture: any
-Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
-Provides: ${python3:Provides}
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ ${shlibs:Depends}
+Provides:
+ ${python3:Provides}
 Suggests:
  python-crypto-doc
 Description: cryptographic algorithms and protocols for Python 3
@@ -80,7 +90,8 @@ Depends:
  ${misc:Depends},
  ${python3:Depends},
  ${shlibs:Depends}
-Provides: ${python3:Provides}
+Provides:
+ ${python3:Provides}
 Description: cryptographic algorithms and protocols for Python 3 (debug extension)
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python 3.
@@ -90,7 +101,8 @@ Description: cryptographic algorithms and protocols for Python 3 (debug extensio
 Package: python-crypto-doc
 Section: doc
 Architecture: all
-Depends: ${misc:Depends}
+Depends:
+ ${misc:Depends}
 Description: cryptographic algorithms and protocols for Python (documentation)
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python.
