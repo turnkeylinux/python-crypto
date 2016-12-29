@@ -25,7 +25,8 @@ Package: python-crypto
 Architecture: any
 Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Provides: ${python:Provides}
-Suggests: python-crypto-dbg, python-crypto-doc
+Suggests:
+ python-crypto-doc
 Description: cryptographic algorithms and protocols for Python
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python. Among the contents of the package:
@@ -42,8 +43,10 @@ Package: python-crypto-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: python-crypto (= ${binary:Version}), ${shlibs:Depends},
- ${misc:Depends}, ${python:Depends}
+Depends:
+ ${misc:Depends},
+ ${python:Depends},
+ ${shlibs:Depends}
 Provides: ${python:Provides}
 Description: cryptographic algorithms and protocols for Python (debug extension)
  A collection of cryptographic algorithms and protocols, implemented
@@ -55,7 +58,8 @@ Package: python3-crypto
 Architecture: any
 Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
 Provides: ${python3:Provides}
-Suggests: python3-crypto-dbg, python-crypto-doc
+Suggests:
+ python-crypto-doc
 Description: cryptographic algorithms and protocols for Python 3
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python 3. Among the contents of the package:
@@ -72,8 +76,10 @@ Package: python3-crypto-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: python3-crypto (= ${binary:Version}), ${shlibs:Depends},
- ${misc:Depends}, ${python3:Depends}
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ ${shlibs:Depends}
 Provides: ${python3:Provides}
 Description: cryptographic algorithms and protocols for Python 3 (debug extension)
  A collection of cryptographic algorithms and protocols, implemented
