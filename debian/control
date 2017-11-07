@@ -47,6 +47,7 @@ Section: debug
 Priority: extra
 Architecture: any
 Depends:
+ python-crypto (= ${binary:Version}),
  ${misc:Depends},
  ${python:Depends},
  ${shlibs:Depends}
@@ -85,6 +86,7 @@ Section: debug
 Priority: extra
 Architecture: any
 Depends:
+ python3-crypto (= ${binary:Version}),
  ${misc:Depends},
  ${python3:Depends},
  ${shlibs:Depends}
