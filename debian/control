@@ -2,8 +2,6 @@ Source: python-crypto
 Section: python
 Priority: optional
 Maintainer: Sebastian Ramacher <sramacher@debian.org>
-Uploaders:
- Andreas Rottmann <rotty@debian.org>
 Build-Depends:
  debhelper (>= 10),
  dh-python,
