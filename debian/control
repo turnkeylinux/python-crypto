@@ -44,7 +44,6 @@ Description: cryptographic algorithms and protocols for Python
 
 Package: python-crypto-dbg
 Section: debug
-Priority: extra
 Architecture: any
 Depends:
  python-crypto (= ${binary:Version}),
@@ -83,7 +82,6 @@ Description: cryptographic algorithms and protocols for Python 3
 
 Package: python3-crypto-dbg
 Section: debug
-Priority: extra
 Architecture: any
 Depends:
  python3-crypto (= ${binary:Version}),
