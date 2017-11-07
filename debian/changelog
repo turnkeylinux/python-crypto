@@ -1,3 +1,14 @@
+python-crypto (2.6.1-8) unstable; urgency=medium
+
+  * debian/control:
+    - Run wrap-and-sort.
+    - Bump Standards-Version.
+    - Remove Andreas from Uploaders. Thank you for all your work on
+      python-crypto! (Closes: #880436)
+    - Remove Priority: extra.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 07 Nov 2017 21:12:04 +0100
+
 python-crypto (2.6.1-7) unstable; urgency=high
 
   [ Salvatore Bonaccorso ]
@@ -288,27 +299,27 @@ python-crypto (2.0.1+dfsg1-5) unstable; urgency=low
 
   * Added python-old-doctools to Build-Depends (closes: #568047).
   * Bumped Standards-Version to 3.8.4 (no changes).
-  
+
  -- Andreas Rottmann <rotty@debian.org>  Thu, 11 Feb 2010 00:45:34 +0100
 
 python-crypto (2.0.1+dfsg1-4) unstable; urgency=low
 
   * Switched to quilt patches:
-    - errata-2.0.1.patch: 
+    - errata-2.0.1.patch:
         Syncs the source tree to the actually released 2.0.1 tarball.
     - dfsg-adjust.patch:
-        Adjusts the build system to the DFSGified source, to deal with 
+        Adjusts the build system to the DFSGified source, to deal with
         the removed files.
     - aes256-55bytes.patch:
         Fixes the AES256 padding bug (Bug#474177).
     - arc2-buffer-overflow.patch:
         Fixes the ARC2 buffer overflow (Bug#516660).
-    - m68k-no-O3.patch: 
-        Workaround GCC 4.0.1 ICE regarding -O3 on m68k. This patch is 
+    - m68k-no-O3.patch:
+        Workaround GCC 4.0.1 ICE regarding -O3 on m68k. This patch is
         deactived -- hopefully this is fixed in recent GCC.
   * New patches:
     - run-tests.patch:
-        Non-Debian part of the patch by Kees Cook <kees@debian.org> 
+        Non-Debian part of the patch by Kees Cook <kees@debian.org>
         to run test suite during build (closes: #518202).
     - no-usr-local.patch:
         Remove #!/usr/local/bin/python shebang line from Util/RFC1751.py.
@@ -333,7 +344,7 @@ python-crypto (2.0.1+dfsg1-3) unstable; urgency=low
   * Acknowlege NMUs.
   * Apply fix for CVE-2009-0544 (Buffer overflow in the ARC2 module), and
     a stand-alone version of the associated testcase (see
-    http://www.openwall.com/lists/oss-security/2009/02/07/1). 
+    http://www.openwall.com/lists/oss-security/2009/02/07/1).
     Closes: #516660.
 
  -- Andreas Rottmann <rotty@debian.org>  Fri, 20 Mar 2009 17:10:55 +0100
@@ -349,7 +360,7 @@ python-crypto (2.0.1+dfsg1-2.3) unstable; urgency=low
 python-crypto (2.0.1+dfsg1-2.2) unstable; urgency=low
 
   * NMU.
-  * Fix padding bug in SHA256; this resulted in bad digests whenever 	
+  * Fix padding bug in SHA256; this resulted in bad digests whenever
     (the number of bytes hashed) mod 64 == 55. Closes: #474177. LP: #191683.
   * Build-depend on texlive-latex-recommended instead of tetex.
 
@@ -479,7 +490,7 @@ python-crypto (1.9a6+dp2-1) unstable; urgency=low
 
   * Transitioned to Python 2.3.
   * Removed accidential junk form .orig.tar.gz.
-  
+
  -- Andreas Rottmann <rotty@debian.org>  Sat,  9 Aug 2003 12:41:23 +0200
 
 python-crypto (1.9a6+dp1-2) unstable; urgency=low
@@ -501,7 +512,7 @@ python-crypto (1.9a4+dp1-4) unstable; urgency=low
       + Build-depend on debhelper >= 4.1.29.
       + Build-depend on python.
   * Bump Standards-Version to 3.5.8.
-  
+
  -- Andreas Rottmann <rotty@debian.org>  Thu, 20 Feb 2003 14:55:12 +0100
 
 python-crypto (1.9a4+dp1-3) unstable; urgency=low
