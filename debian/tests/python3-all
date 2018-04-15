@@ -6,7 +6,6 @@ PYVERS_DEFAULT=$(py3versions -vd)
 
 for py in $PYVERS ; do
   if [ "$py" != "$PYVERS_DEFAULT" ] ; then
-    python$py -c "import Crypto.SelfTest; Crypto.SelfTest.run()" \
-      2> >( grep -v RandomPool_DeprecationWarning >&2 )
+    python$py -c "import Crypto.SelfTest; Crypto.SelfTest.run()"
   fi
 done
