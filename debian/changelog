@@ -1,3 +1,17 @@
+python-crypto (2.6.1-9) unstable; urgency=medium
+
+  * debian/control:
+    - Move to salsa.d.o.
+    - Bump Standards-Version.
+  * debian/: Bump debhelper compat to 11.
+  * debian/tests: Add allow-stderr restriction instead of fidling with
+    warnings.
+  * debian/patches: Apply backported patch from pycryptodome to Fix ElGamal
+    key generation (CVE-2018-6594). (Closes: #889999)
+  * debian/copyright: Update copyright years.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 16 Apr 2018 01:14:05 +0200
+
 python-crypto (2.6.1-8) unstable; urgency=medium
 
   * debian/control:
