@@ -1,4 +1,4 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: pycrypto
 Upstream-Contact: Dwayne C. Litzenberger <dlitz@dlitz.net>
 Source: http://www.dlitz.net/software/pycrypto/
@@ -42,7 +42,7 @@ License: public-domain
  source code may be subject to regulation in your jurisdiction.
 
 Files: debian/*
-Copyright: 2011-2013 Sebastian Ramacher <sramacher@debian.org>
+Copyright: 2011-2018 Sebastian Ramacher <sramacher@debian.org>
 License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions
