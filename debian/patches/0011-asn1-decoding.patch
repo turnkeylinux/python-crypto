@@ -1,13 +1,19 @@
-Description: Fix TypeError in ASN1 implementation
-Author: Stefanos Harhalakis <v13@v13.gr>
+From: Stefanos Harhalakis <v13@v13.gr>
+Date: Mon, 16 Apr 2018 01:02:09 +0200
+Subject: Fix TypeError in ASN1 implementation
+
 Last-Update: 2014-05-10
 Forwarded: not-needed
 Bug-Debian: https://bugs.debian.org/746180
+---
+ lib/Crypto/Util/asn1.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff -Nur python-crypto-2.6.1.orig/lib/Crypto/Util/asn1.py python-crypto-2.6.1/lib/Crypto/Util/asn1.py
---- python-crypto-2.6.1.orig/lib/Crypto/Util/asn1.py	2013-10-14 22:38:10.000000000 +0100
-+++ python-crypto-2.6.1/lib/Crypto/Util/asn1.py	2014-04-27 19:27:11.602641108 +0100
-@@ -257,7 +257,7 @@
+diff --git a/lib/Crypto/Util/asn1.py b/lib/Crypto/Util/asn1.py
+index dd5ec31..37957ce 100644
+--- a/lib/Crypto/Util/asn1.py
++++ b/lib/Crypto/Util/asn1.py
+@@ -257,7 +257,7 @@ class DerOctetString(DerObject):
          self.payload = value
  
      def decode(self, derEle, noLeftOvers=0):
@@ -16,7 +22,7 @@ diff -Nur python-crypto-2.6.1.orig/lib/Crypto/Util/asn1.py python-crypto-2.6.1/l
          if not self.isType("OCTET STRING"):
              raise ValueError("Not a valid OCTET STRING.")
          return p
-@@ -271,7 +271,7 @@
+@@ -271,7 +271,7 @@ class DerObjectId(DerObject):
          DerObject.__init__(self, 'OBJECT IDENTIFIER')
  
      def decode(self, derEle, noLeftOvers=0):

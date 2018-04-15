@@ -1,7 +1,13 @@
-Description: Fix Python 3 erros uncovered by reenable-redefined-tests.patch.
-Author: Sebastian Ramacher <s.ramacher@gmx.at>
+From: Sebastian Ramacher <s.ramacher@gmx.at>
+Date: Mon, 16 Apr 2018 01:02:09 +0200
+Subject: Fix Python 3 erros uncovered by reenable-redefined-tests.patch.
+
 Last-Update: 2012-05-28
 Forwarded: https://github.com/dlitz/pycrypto/pull/16
+---
+ lib/Crypto/PublicKey/RSA.py                     | 6 +++---
+ lib/Crypto/SelfTest/PublicKey/test_importKey.py | 2 +-
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/lib/Crypto/PublicKey/RSA.py b/lib/Crypto/PublicKey/RSA.py
 index 99d851d..ec04625 100644

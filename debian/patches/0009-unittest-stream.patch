@@ -1,8 +1,13 @@
-Description: Fix handling of the output stream in SelfTest
-Author: Sebastian Ramacher <sramacher@debian.org>
+From: Sebastian Ramacher <sramacher@debian.org>
+Date: Mon, 16 Apr 2018 01:02:09 +0200
+Subject: Fix handling of the output stream in SelfTest
+
 Last-Update: 2014-01-23
 Forwarded: https://github.com/dlitz/pycrypto/pull/39
 Applied-Upstream: yes
+---
+ lib/Crypto/SelfTest/__init__.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/lib/Crypto/SelfTest/__init__.py b/lib/Crypto/SelfTest/__init__.py
 index 40b3969..7110cd2 100644

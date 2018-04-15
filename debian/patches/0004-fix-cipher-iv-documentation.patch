@@ -1,9 +1,19 @@
-Description: Update doctring to document actual behavior.
- The IV passed to the cipher's new method may not be empty if a mode different
- from MODE_EBC and MODE_CTR is used.
-Author: Stefano Rivera <stefano@rivera.za.net>
+From: Stefano Rivera <stefano@rivera.za.net>
+Date: Mon, 16 Apr 2018 01:02:09 +0200
+Subject: Update doctring to document actual behavior.
+
+The IV passed to the cipher's new method may not be empty if a mode different
+from MODE_EBC and MODE_CTR is used.
 Origin: https://github.com/dlitz/pycrypto/commit/cbc13b3f
 Last-Update: 2012-05-28
+---
+ lib/Crypto/Cipher/AES.py      | 3 +--
+ lib/Crypto/Cipher/ARC2.py     | 3 +--
+ lib/Crypto/Cipher/Blowfish.py | 3 +--
+ lib/Crypto/Cipher/CAST.py     | 3 +--
+ lib/Crypto/Cipher/DES.py      | 3 +--
+ lib/Crypto/Cipher/DES3.py     | 3 +--
+ 6 files changed, 6 insertions(+), 12 deletions(-)
 
 diff --git a/lib/Crypto/Cipher/AES.py b/lib/Crypto/Cipher/AES.py
 index 14f68d8..eb91c5f 100644

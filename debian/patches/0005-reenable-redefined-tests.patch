@@ -1,12 +1,19 @@
-Description: Re-enable redefined tests.
- The test suite contains tests that are disabled because they have the same name
- as other tests. Renaming them enables them again.
- .
- PKCS1_OAEP_Tests.testEncryptDecrypt1 is updated to work with the new interface
- of PKCS1_OAEP.
-Author: Sebastian Ramacher <s.ramacher@gmx.at>
+From: Sebastian Ramacher <s.ramacher@gmx.at>
+Date: Mon, 16 Apr 2018 01:02:09 +0200
+Subject: Re-enable redefined tests.
+
+The test suite contains tests that are disabled because they have the same name
+as other tests. Renaming them enables them again.
+
+PKCS1_OAEP_Tests.testEncryptDecrypt1 is updated to work with the new interface
+of PKCS1_OAEP.
 Last-Update: 2012-05-28
 Forwarded: https://github.com/dlitz/pycrypto/pull/16
+---
+ lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py   | 11 ++++++-----
+ lib/Crypto/SelfTest/PublicKey/test_importKey.py |  6 +++---
+ lib/Crypto/SelfTest/Util/test_asn1.py           |  2 +-
+ 3 files changed, 10 insertions(+), 9 deletions(-)
 
 diff --git a/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py b/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py
 index accca61..7ca5c15 100644

@@ -1,14 +1,28 @@
-Description: Replace deprecated unittest methods
- 2to3 in Python 3.3 and Python 3.4 convert files differently if they encounter
- any of the deprecated unittests methods. To circumvent this problem, rename
- them before running 2to3
-Author: Sebastian Ramacher <sramacher@debian.org>
+From: Sebastian Ramacher <sramacher@debian.org>
+Date: Mon, 16 Apr 2018 01:02:09 +0200
+Subject: Replace deprecated unittest methods
+
+2to3 in Python 3.3 and Python 3.4 convert files differently if they encounter
+any of the deprecated unittests methods. To circumvent this problem, rename
+them before running 2to3
 Forwarded: not-needed
 Last-Update: 2014-02-25
+---
+ lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py   |   2 +-
+ lib/Crypto/SelfTest/Hash/common.py              |   8 +-
+ lib/Crypto/SelfTest/PublicKey/test_ElGamal.py   |  40 ++++-----
+ lib/Crypto/SelfTest/PublicKey/test_RSA.py       |   6 +-
+ lib/Crypto/SelfTest/PublicKey/test_importKey.py |  10 +--
+ lib/Crypto/SelfTest/Signature/test_pkcs1_15.py  |   8 +-
+ lib/Crypto/SelfTest/Signature/test_pkcs1_pss.py |  14 +--
+ lib/Crypto/SelfTest/Util/test_asn1.py           | 112 ++++++++++++------------
+ 8 files changed, 100 insertions(+), 100 deletions(-)
 
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py
-@@ -336,7 +336,7 @@ class PKCS1_OAEP_Tests(unittest.TestCase
+diff --git a/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py b/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py
+index 7ca5c15..d30fc5f 100644
+--- a/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py
++++ b/lib/Crypto/SelfTest/Cipher/test_pkcs1_oaep.py
+@@ -336,7 +336,7 @@ class PKCS1_OAEP_Tests(unittest.TestCase):
                      cipher = PKCS.new(self.key1024, hashmod)
                      ct = cipher.encrypt(pt)
                      self.assertEqual(cipher.decrypt(ct), pt)
@@ -17,9 +31,11 @@ Last-Update: 2014-02-25
  
          def testEncryptDecrypt3(self):
                  # Verify that OAEP supports labels
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/Hash/common.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/Hash/common.py
-@@ -53,11 +53,11 @@ class HashDigestSizeSelfTest(unittest.Te
+diff --git a/lib/Crypto/SelfTest/Hash/common.py b/lib/Crypto/SelfTest/Hash/common.py
+index f77fb0f..fe36a78 100644
+--- a/lib/Crypto/SelfTest/Hash/common.py
++++ b/lib/Crypto/SelfTest/Hash/common.py
+@@ -53,11 +53,11 @@ class HashDigestSizeSelfTest(unittest.TestCase):
          return self.description
  
      def runTest(self):
@@ -35,8 +51,10 @@ Last-Update: 2014-02-25
  
  
  class HashSelfTest(unittest.TestCase):
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/PublicKey/test_ElGamal.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/PublicKey/test_ElGamal.py
+diff --git a/lib/Crypto/SelfTest/PublicKey/test_ElGamal.py b/lib/Crypto/SelfTest/PublicKey/test_ElGamal.py
+index cdee8cf..7b03115 100644
+--- a/lib/Crypto/SelfTest/PublicKey/test_ElGamal.py
++++ b/lib/Crypto/SelfTest/PublicKey/test_ElGamal.py
 @@ -105,8 +105,8 @@ class ElGamalTest(unittest.TestCase):
                  d = self.convert_tv(tv, as_longs)
                  key = ElGamal.construct(d['key'])
@@ -128,8 +146,10 @@ Last-Update: 2014-02-25
  
          # Test signature/verification
          signature = elgObj.sign(plaintext, 987654321L)
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/PublicKey/test_RSA.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/PublicKey/test_RSA.py
+diff --git a/lib/Crypto/SelfTest/PublicKey/test_RSA.py b/lib/Crypto/SelfTest/PublicKey/test_RSA.py
+index c971042..811c01c 100644
+--- a/lib/Crypto/SelfTest/PublicKey/test_RSA.py
++++ b/lib/Crypto/SelfTest/PublicKey/test_RSA.py
 @@ -172,9 +172,9 @@ class RSATest(unittest.TestCase):
  
      def test_factoring(self):
@@ -143,9 +163,11 @@ Last-Update: 2014-02-25
  
          self.assertRaises(ValueError, self.rsa.construct, [self.n, self.e, self.n-1])
  
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/PublicKey/test_importKey.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/PublicKey/test_importKey.py
-@@ -158,7 +158,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3
+diff --git a/lib/Crypto/SelfTest/PublicKey/test_importKey.py b/lib/Crypto/SelfTest/PublicKey/test_importKey.py
+index 0e41577..d59be13 100644
+--- a/lib/Crypto/SelfTest/PublicKey/test_importKey.py
++++ b/lib/Crypto/SelfTest/PublicKey/test_importKey.py
+@@ -158,7 +158,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
      def testImportKey1(self):
          """Verify import of RSAPrivateKey DER SEQUENCE"""
          key = self.rsa.importKey(self.rsaKeyDER)
@@ -154,7 +176,7 @@ Last-Update: 2014-02-25
          self.assertEqual(key.n, self.n)
          self.assertEqual(key.e, self.e)
          self.assertEqual(key.d, self.d)
-@@ -168,7 +168,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3
+@@ -168,7 +168,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
      def testImportKey2(self):
          """Verify import of SubjectPublicKeyInfo DER SEQUENCE"""
          key = self.rsa.importKey(self.rsaPublicKeyDER)
@@ -163,7 +185,7 @@ Last-Update: 2014-02-25
          self.assertEqual(key.n, self.n)
          self.assertEqual(key.e, self.e)
  
-@@ -228,7 +228,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3
+@@ -228,7 +228,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
          """Verify import of encrypted PrivateKeyInfo DER SEQUENCE"""
          for t in self.rsaKeyEncryptedPEM:
              key = self.rsa.importKey(t[1], t[0])
@@ -172,7 +194,7 @@ Last-Update: 2014-02-25
              self.assertEqual(key.n, self.n)
              self.assertEqual(key.e, self.e)
              self.assertEqual(key.d, self.d)
-@@ -238,7 +238,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3
+@@ -238,7 +238,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
      def testImportKey9(self):
          """Verify import of unencrypted PrivateKeyInfo DER SEQUENCE"""
          key = self.rsa.importKey(self.rsaKeyDER8)
@@ -181,7 +203,7 @@ Last-Update: 2014-02-25
          self.assertEqual(key.n, self.n)
          self.assertEqual(key.e, self.e)
          self.assertEqual(key.d, self.d)
-@@ -248,7 +248,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3
+@@ -248,7 +248,7 @@ Lr7UkvEtFrRhDDKMtuIIq19FrL4pUIMymPMSLBn3hJLe30Dw48GQM4UCAwEAAQ==
      def testImportKey10(self):
          """Verify import of unencrypted PrivateKeyInfo DER SEQUENCE, encoded with PEM"""
          key = self.rsa.importKey(self.rsaKeyPEM8)
@@ -190,8 +212,10 @@ Last-Update: 2014-02-25
          self.assertEqual(key.n, self.n)
          self.assertEqual(key.e, self.e)
          self.assertEqual(key.d, self.d)
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/Signature/test_pkcs1_15.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/Signature/test_pkcs1_15.py
+diff --git a/lib/Crypto/SelfTest/Signature/test_pkcs1_15.py b/lib/Crypto/SelfTest/Signature/test_pkcs1_15.py
+index bc36696..ee9c106 100644
+--- a/lib/Crypto/SelfTest/Signature/test_pkcs1_15.py
++++ b/lib/Crypto/SelfTest/Signature/test_pkcs1_15.py
 @@ -168,7 +168,7 @@ class PKCS1_15_Tests(unittest.TestCase):
                              h.update(b(row[1]))
                          # The real test
@@ -222,9 +246,11 @@ Last-Update: 2014-02-25
  
  
  def get_tests(config={}):
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/Signature/test_pkcs1_pss.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/Signature/test_pkcs1_pss.py
-@@ -357,7 +357,7 @@ class PKCS1_PSS_Tests(unittest.TestCase)
+diff --git a/lib/Crypto/SelfTest/Signature/test_pkcs1_pss.py b/lib/Crypto/SelfTest/Signature/test_pkcs1_pss.py
+index f5256a5..b8067e4 100644
+--- a/lib/Crypto/SelfTest/Signature/test_pkcs1_pss.py
++++ b/lib/Crypto/SelfTest/Signature/test_pkcs1_pss.py
+@@ -357,7 +357,7 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                          key._randfunc = lambda N: test_salt
                          # The real test
                          signer = PKCS.new(key)
@@ -233,7 +259,7 @@ Last-Update: 2014-02-25
                          s = signer.sign(h)
                          self.assertEqual(s, t2b(self._testData[i][2]))
  
-@@ -375,9 +375,9 @@ class PKCS1_PSS_Tests(unittest.TestCase)
+@@ -375,9 +375,9 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                          # The real test
                          key._randfunc = lambda N: test_salt
                          verifier = PKCS.new(key)
@@ -245,7 +271,7 @@ Last-Update: 2014-02-25
  
          def testSignVerify(self):
                          h = SHA.new()
-@@ -403,7 +403,7 @@ class PKCS1_PSS_Tests(unittest.TestCase)
+@@ -403,7 +403,7 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                              key.asked = 0
                              signer = PKCS.new(key)
                              s = signer.sign(h)
@@ -254,7 +280,7 @@ Last-Update: 2014-02-25
                              self.assertEqual(key.asked, h.digest_size)
  
                          h = SHA.new()
-@@ -415,14 +415,14 @@ class PKCS1_PSS_Tests(unittest.TestCase)
+@@ -415,14 +415,14 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                              signer = PKCS.new(key, saltLen=sLen)
                              s = signer.sign(h)
                              self.assertEqual(key.asked, sLen)
@@ -271,7 +297,7 @@ Last-Update: 2014-02-25
  
                          # Verify that sign() does not call the RNG
                          # when salt length is 0, even when a new MGF is provided
-@@ -432,7 +432,7 @@ class PKCS1_PSS_Tests(unittest.TestCase)
+@@ -432,7 +432,7 @@ class PKCS1_PSS_Tests(unittest.TestCase):
                          s = signer.sign(h)
                          self.assertEqual(key.asked,0)
                          self.assertEqual(mgfcalls, 1)
@@ -280,8 +306,10 @@ Last-Update: 2014-02-25
  
  def get_tests(config={}):
      tests = []
---- python-crypto-2.6.1.orig/lib/Crypto/SelfTest/Util/test_asn1.py
-+++ python-crypto-2.6.1/lib/Crypto/SelfTest/Util/test_asn1.py
+diff --git a/lib/Crypto/SelfTest/Util/test_asn1.py b/lib/Crypto/SelfTest/Util/test_asn1.py
+index bbd0a39..e3d15aa 100644
+--- a/lib/Crypto/SelfTest/Util/test_asn1.py
++++ b/lib/Crypto/SelfTest/Util/test_asn1.py
 @@ -35,86 +35,86 @@ class DerObjectTests(unittest.TestCase):
  	def testObjEncode1(self):
  		# No payload
@@ -395,7 +423,7 @@ Last-Update: 2014-02-25
  		b('\x02\x82\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00')+
  		b('\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')+
  		b('\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')+
-@@ -139,30 +139,30 @@ class DerSequenceTests(unittest.TestCase
+@@ -139,30 +139,30 @@ class DerSequenceTests(unittest.TestCase):
  		# One single-byte integer (looks negative)
  		der = DerSequence()
  		der.append(0xFFL)
@@ -433,7 +461,7 @@ Last-Update: 2014-02-25
  
  	####
  
-@@ -170,29 +170,29 @@ class DerSequenceTests(unittest.TestCase
+@@ -170,29 +170,29 @@ class DerSequenceTests(unittest.TestCase):
  		# Empty sequence
  		der = DerSequence()
  		der.decode(b('0\x00'))
@@ -472,7 +500,7 @@ Last-Update: 2014-02-25
  
  	def testDecode4(self):
  		# One very long integer
-@@ -217,40 +217,40 @@ class DerSequenceTests(unittest.TestCase
+@@ -217,40 +217,40 @@ class DerSequenceTests(unittest.TestCase):
  		b('\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')+
  		b('\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')+
  		b('\x00\x00\x00\x00\x00\x00\x00\x00\x00'))
