@@ -10,3 +10,4 @@ unittest-stream.patch
 deprecated-test-methods.patch
 asn1-decoding.patch
 CVE-2013-7459.patch
+0013-Backport-of-fix-for-CVE-2018-6594-from-pycryptodome.patch
