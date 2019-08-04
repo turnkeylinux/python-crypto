@@ -10,8 +10,6 @@ Build-Depends:
  python-all-dev,
  python3-all-dbg,
  python3-all-dev (>= 3.3.2-5~)
-Build-Depends-Indep:
- python-docutils
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
 Standards-Version: 4.4.0
