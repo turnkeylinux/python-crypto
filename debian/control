@@ -11,8 +11,7 @@ Build-Depends:
  python3-all-dbg,
  python3-all-dev (>= 3.3.2-5~)
 Build-Depends-Indep:
- python-docutils,
- python-epydoc
+ python-docutils
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
 Standards-Version: 4.1.4
@@ -28,8 +27,6 @@ Depends:
  ${shlibs:Depends}
 Provides:
  ${python:Provides}
-Suggests:
- python-crypto-doc
 Description: cryptographic algorithms and protocols for Python
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python. Among the contents of the package:
@@ -66,8 +63,6 @@ Depends:
  ${shlibs:Depends}
 Provides:
  ${python3:Provides}
-Suggests:
- python-crypto-doc
 Description: cryptographic algorithms and protocols for Python 3
  A collection of cryptographic algorithms and protocols, implemented
  for use from Python 3. Among the contents of the package:
@@ -95,14 +90,3 @@ Description: cryptographic algorithms and protocols for Python 3 (debug extensio
  for use from Python 3.
  .
  This package contains the extensions built for the Python 3 debug interpreter.
-
-Package: python-crypto-doc
-Section: doc
-Architecture: all
-Depends:
- ${misc:Depends}
-Description: cryptographic algorithms and protocols for Python (documentation)
- A collection of cryptographic algorithms and protocols, implemented
- for use from Python.
- .
- This package contains technical documentation.
