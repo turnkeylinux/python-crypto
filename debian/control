@@ -14,7 +14,7 @@ Build-Depends-Indep:
  python-docutils
 X-Python-Version: >= 2.1
 X-Python3-Version: >= 3.0
-Standards-Version: 4.1.4
+Standards-Version: 4.4.0
 Vcs-Git: https://salsa.debian.org/sramacher/python-crypto.git
 Vcs-Browser: https://salsa.debian.org/sramacher/python-crypto
 Homepage: http://www.pycrypto.org/
