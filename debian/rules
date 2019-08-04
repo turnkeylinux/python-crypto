@@ -14,8 +14,6 @@ override_dh_clean:
 
 override_dh_auto_build-indep:
 	pybuild --build -p $(shell pyversions -vd)
-	pybuild -s custom --build -p $(shell pyversions -vd) \
-		--build-args="env PYTHONPATH={build_dir} epydoc --config Doc/epydoc-config"
 
 override_dh_auto_test-arch:
 	dh_auto_test -- -s custom --test-args="{interpreter} setup.py test"
