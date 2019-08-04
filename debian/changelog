@@ -1,7 +1,7 @@
-python-crypto (2.6.1-9.1) unstable; urgency=medium
+python-crypto (2.6.1-10) unstable; urgency=medium
 
-  * Non-maintainer upload.
-  * Eliminate dependency on epydoc, which will be removed (closes: #933618)
+  [ Kenneth J. Pronovici ]
+  * Eliminate dependency on epydoc, which will be removed (Closes: #933618)
     - Update debian/rules to no longer build epydoc documentation
     - Update debian/control to remove Build-Depends: python-epydoc
     - Update debian/control to remove now-empty python-crypto-doc package
@@ -9,7 +9,11 @@ python-crypto (2.6.1-9.1) unstable; urgency=medium
     - Remove debian/python-crypto-doc.doc-base
     - Remove debian/python-crypto-doc.docs
 
- -- Kenneth J. Pronovici <pronovic@debian.org>  Fri, 02 Aug 2019 19:33:53 +0000
+  [ Sebastian Ramacher ]
+  * debian/control: Bump Standards-Version.
+  * debian/: Bump debhelper compat to 12.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 04 Aug 2019 20:56:28 +0200
 
 python-crypto (2.6.1-9) unstable; urgency=medium
 
