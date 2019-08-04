@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Sebastian Ramacher <sramacher@debian.org>
 Build-Depends:
- debhelper (>= 11),
+ debhelper-compat (= 12),
  dh-python,
  libgmp-dev,
  python-all-dbg,
