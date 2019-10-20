@@ -1,10 +1,12 @@
 python-crypto (2.6.1-11) unstable; urgency=medium
 
-  * debian/control: Bump Standards-Version
+  * debian/control:
+    - Bump Standards-Version
+    - Set RRR: no
   * debian/patches: Replace time.clock with timeit.default_timer (Closes:
     #942665)
 
- -- Sebastian Ramacher <sramacher@debian.org>  Sun, 20 Oct 2019 14:59:58 +0200
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 20 Oct 2019 15:05:21 +0200
 
 python-crypto (2.6.1-10) unstable; urgency=medium
 
