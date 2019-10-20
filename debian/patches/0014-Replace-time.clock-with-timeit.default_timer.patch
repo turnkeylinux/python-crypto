@@ -1,0 +1,31 @@
+From: Matthias Klose <doko@ubuntu.com>
+Date: Sun, 20 Oct 2019 14:57:50 +0200
+Subject: Replace time.clock with timeit.default_timer
+
+---
+ lib/Crypto/Random/_UserFriendlyRNG.py | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/lib/Crypto/Random/_UserFriendlyRNG.py b/lib/Crypto/Random/_UserFriendlyRNG.py
+index 957e006..c8678ce 100644
+--- a/lib/Crypto/Random/_UserFriendlyRNG.py
++++ b/lib/Crypto/Random/_UserFriendlyRNG.py
+@@ -32,6 +32,7 @@ import os
+ import threading
+ import struct
+ import time
++import timeit
+ from math import floor
+ 
+ from Crypto.Random import OSRNG
+@@ -73,8 +74,8 @@ class _EntropyCollector(object):
+         t = time.time()
+         self._time_es.feed(struct.pack("@I", int(2**30 * (t - floor(t)))))
+ 
+-        # Add the fractional part of time.clock()
+-        t = time.clock()
++        # Add the fractional part of timeit.default_timer()
++        t = timeit.default_timer()
+         self._clock_es.feed(struct.pack("@I", int(2**30 * (t - floor(t)))))
+ 
+ 
