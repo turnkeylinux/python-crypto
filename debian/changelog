@@ -1,3 +1,12 @@
+python-crypto (2.6.1-12) unstable; urgency=medium
+
+  * debian/python3-crypto{,-dbg}.install: Fix installation of Python 3.8
+    extensions (Closes: #942718)
+  * debian/tests: Fix Python 2 test and remove python-all and python-all-dbg
+    tests.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 22 Oct 2019 21:21:40 +0200
+
 python-crypto (2.6.1-11) unstable; urgency=medium
 
   * debian/control:
