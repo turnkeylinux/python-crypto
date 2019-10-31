@@ -1,1 +1,1 @@
-usr/lib/python3*/*-packages/Crypto/*/*.cpython-3[0-9]d{,m}-*.so
+usr/lib/python3*/*-packages/Crypto/*/*.cpython-3[0-9]d*.so
