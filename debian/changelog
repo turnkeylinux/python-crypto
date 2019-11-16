@@ -1,3 +1,13 @@
+python-crypto (2.6.1-13) unstable; urgency=medium
+
+  [ Sebastian Ramacher ]
+  * debian/python3-crypto{,dbg}.install: Avoid brace expansion
+
+  [ Jochen Sprickerhof ]
+  * debian/patches: Fix use if "is" with literals (Closes: #944843)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 16 Nov 2019 10:46:30 +0100
+
 python-crypto (2.6.1-12) unstable; urgency=medium
 
   * debian/python3-crypto{,-dbg}.install: Fix installation of Python 3.8
