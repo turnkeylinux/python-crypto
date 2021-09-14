@@ -6,7 +6,7 @@ export DEB_CFLAGS_MAINT_APPEND=-O3
 endif
 
 %:
-	dh $@ --with=python2,python3 --buildsystem=pybuild
+	dh $@ --with=python2 --buildsystem=pybuild
 
 override_dh_clean:
 	# Keep LEGAL/copy/LICENSE.orig
