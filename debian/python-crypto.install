@@ -1,1 +1,1 @@
-usr/lib/python2.7/dist-packages/* /usr/lib/python2.7/dist-packages/
+debian/python-crypto/lib/python2.7/dist-packages/* /usr/lib/python2.7/dist-packages/
