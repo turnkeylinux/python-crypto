@@ -1,15 +1,15 @@
 Source: python-crypto
 Section: python
 Priority: optional
-Maintainer: Sebastian Ramacher <sramacher@debian.org>
+Maintainer: Jeremy Davis <jeremy@turnkeylinux.org>
 Build-Depends:
  dh-python,
  libgmp-dev,
- python-all-dbg,
- python-all-dev,
+ python2-dbg,
+ python2-dev,
 Standards-Version: 4.4.1
-Vcs-Git: https://salsa.debian.org/sramacher/python-crypto.git
-Vcs-Browser: https://salsa.debian.org/sramacher/python-crypto
+Vcs-Git: https://github.com/turnkeylinux/python-crypto.git
+Vcs-Browser: https://github.com/turnkeylinux/python-crypto
 Homepage: http://www.pycrypto.org/
 Rules-Requires-Root: no
 
