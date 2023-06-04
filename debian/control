@@ -3,10 +3,10 @@ Section: python
 Priority: optional
 Maintainer: Jeremy Davis <jeremy@turnkeylinux.org>
 Build-Depends:
- dh-python,
+ dh-python2 (>= 4.20201102+turnkey0),
  libgmp-dev,
- python2-dbg,
- python2-dev,
+ python-all-dbg,
+ python-all-dev,
 Standards-Version: 4.4.1
 Vcs-Git: https://github.com/turnkeylinux/python-crypto.git
 Vcs-Browser: https://github.com/turnkeylinux/python-crypto
